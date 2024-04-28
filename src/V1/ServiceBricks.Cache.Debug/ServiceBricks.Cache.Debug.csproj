@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Version>1.0.4</Version>
+		<Description>ServiceBricks is the cornerstone for building a microservices foundation. Visit http://ServiceBricks.com to learn more.</Description>
+		<AssemblyTitle>ServiceBricks.Cache</AssemblyTitle>
+		<Authors>holomodular</Authors>
+		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+		<Nullable>disable</Nullable>
+		<Copyright>Copyright © 2023 HoloModular LLC. All Rights Reserved. Visit http://HoloModular.com to learn more.</Copyright>
+		<PackageProjectUrl>http://ServiceBricks.com</PackageProjectUrl>
+		<PackageIcon>logo.png</PackageIcon>
+		<PackageTags>service;bricks;cache</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>ServiceBricks.Cache.snk</AssemblyOriginatorKeyFile>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/holomodular/ServiceBricks</RepositoryUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\ServiceBricks.Cache\Api\CacheDataDto.cs" Link="CacheDataDto.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\BackgroundTask\CacheExpirationTask.cs" Link="CacheExpirationTask.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\BackgroundTask\CacheExpirationTimer.cs" Link="CacheExpirationTimer.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Controllers\CacheDataApiController.cs" Link="CacheDataApiController.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Extensions\ApplicationBuilderExtensions.cs" Link="ApplicationBuilderExtensions.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Interface\ICacheDataApiClient.cs" Link="ICacheDataApiClient.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Interface\ICacheDataApiController.cs" Link="ICacheDataApiController.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Interface\ICacheDataApiService.cs" Link="ICacheDataApiService.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Interface\ISingleServerProcessService.cs" Link="ISingleServerProcessService.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Model\CacheConstants.cs" Link="CacheConstants.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Model\CacheModule.cs" Link="CacheModule.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Service\CacheDataApiClient.cs" Link="CacheDataApiClient.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Service\SingleServerProcessService.cs" Link="SingleServerProcessService.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ServiceBricks" Version="1.0.4" />
+	</ItemGroup>
+</Project>
