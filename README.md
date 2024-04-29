@@ -4,7 +4,7 @@
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/holomodular-support/a4914be5332dc8c9536889edf1f00ace/raw/servicebrickscache-codecoverage.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-# ServiceBricks Logging Microservice
+# ServiceBricks Cache Microservice
 
 ## Overview
 
