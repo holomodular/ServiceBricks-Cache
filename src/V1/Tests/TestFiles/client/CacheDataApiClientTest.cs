@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ServiceBricks.Xunit;
+using ServiceBricks.Cache;
+using ServiceBricks.Cache.Client.Xunit;
 
-namespace ServiceBricks.Cache.Client.Xunit
+namespace ServiceBricks.Xunit.Integration
 {
     [Collection(ServiceBricks.Xunit.Constants.SERVICEBRICKS_COLLECTION_NAME)]
     public class CacheDataApiClientTest : ApiClientTest<CacheDataDto>
