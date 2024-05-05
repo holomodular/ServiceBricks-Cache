@@ -27,7 +27,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Xunit" Version="1.0.4" />
+		<PackageReference Include="ServiceBricks.Xunit" Version="1.0.5" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />
