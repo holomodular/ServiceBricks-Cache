@@ -5,8 +5,8 @@
     /// </summary>
     public static class CacheMongoDbConstants
     {
-        public const string APPSETTINGS_CONNECTION_STRING = "ServiceBrick:Cache:MongoDb:ConnectionString";
-        public const string APPSETTINGS_DATABASE_NAME = "ServiceBrick:Cache:MongoDb:DatabaseName";
+        public const string APPSETTING_CONNECTION_STRING = "ServiceBrick:Cache:Storage:MongoDb:ConnectionString";
+        public const string APPSETTING_DATABASE = "ServiceBrick:Cache:Storage:MongoDb:Database";
 
         public const string COLLECTIONNAME_PREFIX = "Cache";
 

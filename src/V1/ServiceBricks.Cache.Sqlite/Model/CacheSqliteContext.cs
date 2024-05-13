@@ -28,7 +28,7 @@ namespace ServiceBricks.Cache.Sqlite
 
             var builder = new DbContextOptionsBuilder<CacheSqliteContext>();
             string connectionString = configuration.GetSqliteConnectionString(
-                CacheSqliteConstants.APPSETTING_DATABASE_CONNECTION);
+                CacheSqliteConstants.APPSETTING_CONNECTION_STRING);
             builder.UseSqlite(connectionString, x =>
             {
                 x.MigrationsAssembly(typeof(CacheSqliteContext).Assembly.GetName().Name);

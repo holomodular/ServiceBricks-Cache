@@ -23,7 +23,7 @@ namespace ServiceBricks.Cache.Cosmos
             // Register Database
             var builder = new DbContextOptionsBuilder<CacheCosmosContext>();
             string connectionString = configuration.GetCosmosConnectionString(
-                CacheCosmosConstants.APPSETTING_CONNECTION);
+                CacheCosmosConstants.APPSETTING_CONNECTION_STRING);
             string database = configuration.GetCosmosDatabase(
                 CacheCosmosConstants.APPSETTING_DATABASE);
             builder.UseCosmos(connectionString, database);

@@ -18,7 +18,6 @@ namespace ServiceBricks.Cache.SqlServer
             {
                 // Migrate
                 var context = serviceScope.ServiceProvider.GetService<CacheSqlServerContext>();
-                context.Database.EnsureCreated();
                 context.Database.Migrate();
                 context.SaveChanges();
             }

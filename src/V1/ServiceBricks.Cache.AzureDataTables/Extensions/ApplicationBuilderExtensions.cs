@@ -21,7 +21,7 @@ namespace ServiceBricks.Cache.AzureDataTables
                 var configuration = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
 
                 var connectionString = configuration.GetAzureDataTablesConnectionString(
-                    CacheAzureDataTablesConstants.APPSETTINGS_CONNECTION_STRING);
+                    CacheAzureDataTablesConstants.APPSETTING_CONNECTION_STRING);
 
                 // Create each table if not exists
                 TableClient tableClient = new TableClient(

@@ -25,7 +25,7 @@ namespace ServiceBricks.Cache.SqlServer
             //Register Database
             var builder = new DbContextOptionsBuilder<CacheSqlServerContext>();
             string connectionString = configuration.GetSqlServerConnectionString(
-                CacheSqlServerConstants.APPSETTING_DATABASE_CONNECTION);
+                CacheSqlServerConstants.APPSETTING_CONNECTION_STRING);
             builder.UseSqlServer(connectionString, x =>
             {
                 x.MigrationsAssembly(typeof(ServiceCollectionExtensions).Assembly.GetName().Name);

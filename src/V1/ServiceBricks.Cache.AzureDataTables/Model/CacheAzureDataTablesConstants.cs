@@ -5,7 +5,7 @@
     /// </summary>
     public static class CacheAzureDataTablesConstants
     {
-        public const string APPSETTINGS_CONNECTION_STRING = "ServiceBricks:Cache:AzureDataTables:ConnectionString";
+        public const string APPSETTING_CONNECTION_STRING = "ServiceBricks:Cache:Storage:AzureDataTables:ConnectionString";
 
         public const string TABLENAME_PREFIX = "Cache";
 

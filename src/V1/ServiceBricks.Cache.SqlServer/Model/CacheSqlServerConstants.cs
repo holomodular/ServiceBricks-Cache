@@ -5,7 +5,7 @@
     /// </summary>
     public static class CacheSqlServerConstants
     {
-        public const string APPSETTING_DATABASE_CONNECTION = "ServiceBricks:Cache:SqlServer:ConnectionString";
+        public const string APPSETTING_CONNECTION_STRING = "ServiceBricks:Cache:Storage:SqlServer:ConnectionString";
 
         public const string DATABASE_SCHEMA_NAME = "Cache";
     }

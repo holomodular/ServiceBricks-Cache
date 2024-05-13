@@ -27,7 +27,7 @@ namespace ServiceBricks.Cache.Postgres
 
             var builder = new DbContextOptionsBuilder<CachePostgresContext>();
             string connectionString = configuration.GetPostgresConnectionString(
-                CachePostgresConstants.APPSETTING_DATABASE_CONNECTION);
+                CachePostgresConstants.APPSETTING_CONNECTION_STRING);
             builder.UseNpgsql(connectionString, x =>
             {
                 x.MigrationsAssembly(typeof(CachePostgresContext).Assembly.GetName().Name);
