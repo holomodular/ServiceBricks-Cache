@@ -69,6 +69,9 @@ It should be changed to support IApiClient, so that other microservices can make
 
 [View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SingleServerProcessService.cs)
 
+## Application Settings
+None
+
 # About ServiceBricks
 
 ServiceBricks is the cornerstone for building a microservices foundation.
