@@ -14,14 +14,14 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Xunit" Version="1.0.6" />
+		<PackageReference Include="ServiceBricks.Xunit" Version="1.0.7" />
 	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />
   </ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="6.0.29" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="6.0.30" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
 		<PackageReference Include="xunit" Version="2.8.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.0">

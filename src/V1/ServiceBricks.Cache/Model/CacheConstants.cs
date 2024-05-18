@@ -5,6 +5,6 @@
     /// </summary>
     public static class CacheConstants
     {
-        public const string APPSETTING_CLIENT_APICONFIG = @"ServiceBricks:Cache:Client:ApiConfig";
+        public const string APPSETTING_CLIENT_APICONFIG = @"ServiceBricks:Cache:Client:Api";
     }
 }
