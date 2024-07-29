@@ -38,6 +38,6 @@
 	  <ProjectReference Include="..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.AzureDataTables" Version="1.0.10" />
+		<PackageReference Include="ServiceBricks.Storage.AzureDataTables" Version="1.0.11" />
 	</ItemGroup>
 </Project>

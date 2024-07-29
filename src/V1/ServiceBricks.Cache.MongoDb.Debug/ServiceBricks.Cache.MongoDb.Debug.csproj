@@ -33,7 +33,7 @@
 	  <Compile Include="..\ServiceBricks.Cache.MongoDb\Storage\CacheStorageRepository.cs" Link="CacheStorageRepository.cs" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.MongoDb" Version="1.0.10" />
+		<PackageReference Include="ServiceBricks.Storage.MongoDb" Version="1.0.11" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />

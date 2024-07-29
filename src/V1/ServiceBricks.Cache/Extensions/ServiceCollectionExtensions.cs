@@ -23,8 +23,6 @@ namespace ServiceBricks.Cache
             // Register Services
             services.AddScoped<ISingleServerProcessService, SingleServerProcessService>();
 
-            services.AddScoped<ICacheDataApiClient, CacheDataApiClient>();
-
             return services;
         }
 
