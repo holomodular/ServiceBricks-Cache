@@ -1,14 +1,18 @@
 ﻿using AutoMapper;
 
-using ServiceQuery;
-
 namespace ServiceBricks.Cache.MongoDb
 {
     /// <summary>
-    /// This is a API service for the Data domain object.
+    /// This is a REST API service for the CacheData domain object.
     /// </summary>
-    public class CacheDataApiService : ApiService<CacheData, CacheDataDto>, ICacheDataApiService
+    public partial class CacheDataApiService : ApiService<CacheData, CacheDataDto>, ICacheDataApiService
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="mapper"></param>
+        /// <param name="businessRuleService"></param>
+        /// <param name="repository"></param>
         public CacheDataApiService(
             IMapper mapper,
             IBusinessRuleService businessRuleService,

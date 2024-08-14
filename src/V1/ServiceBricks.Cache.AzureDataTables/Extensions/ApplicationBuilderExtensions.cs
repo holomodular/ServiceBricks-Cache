@@ -8,30 +8,37 @@ using ServiceBricks.Storage.AzureDataTables;
 namespace ServiceBricks.Cache.AzureDataTables
 {
     /// <summary>
-    /// IApplicationBuilder extensions for Cache.
+    /// Extensions for starting the ServiceBricks Cache Azure Data Tables module.
     /// </summary>
     public static partial class ApplicationBuilderExtensions
     {
+        /// <summary>
+        /// Flag to indicate if the module has been started.
+        /// </summary>
         public static bool ModuleStarted = false;
 
+        /// <summary>
+        /// Start the ServiceBricks Cache Azure Data Tables module.
+        /// </summary>
+        /// <param name="applicationBuilder"></param>
+        /// <returns></returns>
         public static IApplicationBuilder StartServiceBricksCacheAzureDataTables(this IApplicationBuilder applicationBuilder)
         {
-            using (var serviceScope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var configuration = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
+            // AI: Get the connection string
+            var configuration = applicationBuilder.ApplicationServices.GetRequiredService<IConfiguration>();
+            var connectionString = configuration.GetAzureDataTablesConnectionString(
+                CacheAzureDataTablesConstants.APPSETTING_CONNECTION_STRING);
 
-                var connectionString = configuration.GetAzureDataTablesConnectionString(
-                    CacheAzureDataTablesConstants.APPSETTING_CONNECTION_STRING);
+            // AI: Create each table in the module
+            TableClient tableClient = new TableClient(
+                connectionString,
+                CacheAzureDataTablesConstants.GetTableName(nameof(CacheData)));
+            tableClient.CreateIfNotExists();
 
-                // Create each table if not exists
-                TableClient tableClient = new TableClient(
-                    connectionString,
-                    CacheAzureDataTablesConstants.GetTableName(nameof(CacheData)));
-                tableClient.CreateIfNotExists();
-            }
+            // AI: Set the module started flag
             ModuleStarted = true;
 
-            // Start core
+            // AI: Start parent module
             applicationBuilder.StartServiceBricksCache();
 
             return applicationBuilder;

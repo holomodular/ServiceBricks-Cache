@@ -1,32 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using ServiceBricks.Storage.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.EntityFrameworkCore
 {
     /// <summary>
-    /// IServiceCollection extensions for Cache.
+    /// Extensions to add the ServiceBricks Cache EntityFrameworkCore module to the IServiceCollection.
     /// </summary>
-    public static class ServiceCollectionExtensions
+    public static partial class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Add the ServiceBricks Cache EntityFrameworkCore module to the IServiceCollection.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddServiceBricksCacheEntityFrameworkCore(this IServiceCollection services, IConfiguration configuration)
         {
-            // Add to module registry for automapper
+            // AI: Add the module to the ModuleRegistry
             ModuleRegistry.Instance.RegisterItem(typeof(CacheEntityFrameworkCoreModule), new CacheEntityFrameworkCoreModule());
 
-            // Add core
+            // AI: Add the parent module
             services.AddServiceBricksCache(configuration);
 
-            // Storage Services
-            //services.AddScoped<IStorageRepository<CacheData>, CacheStorageRepository<CacheData>>();
-
-            // API Services
+            // AI: Add API services for the module. Each DTO should have two registrations, one for the generic IApiService<> and one for the named interface
             services.AddScoped<IApiService<CacheDataDto>, CacheDataApiService>();
             services.AddScoped<ICacheDataApiService, CacheDataApiService>();
 
-            // Business Rules
+            // AI: Register business rules for the module
             DomainCreateUpdateDateRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance);
             DomainDateTimeOffsetRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
             ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.RegisterRule(BusinessRuleRegistry.Instance);

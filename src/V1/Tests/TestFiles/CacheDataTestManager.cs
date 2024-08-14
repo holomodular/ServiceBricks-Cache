@@ -1,11 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using ServiceQuery;
-using ServiceBricks.Cache;
-using Microsoft.AspNetCore.Http.Extensions;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json.Bson;
+using ServiceBricks.Cache;
+using ServiceQuery;
 
 namespace ServiceBricks.Xunit
 {
@@ -62,9 +60,9 @@ namespace ServiceBricks.Xunit
                 }
             }
 
-            Assert.True(serviceDto.Key == clientDto.Key);
+            Assert.True(serviceDto.CacheKey == clientDto.CacheKey);
 
-            Assert.True(serviceDto.Value == clientDto.Value);
+            Assert.True(serviceDto.CacheValue == clientDto.CacheValue);
 
             //UpdateDateRule
             if (method == HttpMethod.Post || method == HttpMethod.Put)
@@ -85,7 +83,7 @@ namespace ServiceBricks.Xunit
         {
             return new CacheDataDto()
             {
-                Key = Guid.NewGuid().ToString(),
+                CacheKey = Guid.NewGuid().ToString(),
             };
         }
 
@@ -95,9 +93,9 @@ namespace ServiceBricks.Xunit
             {
                 CreateDate = DateTimeOffset.UtcNow,
                 ExpirationDate = DateTimeOffset.UtcNow.AddDays(1),
-                Key = Guid.NewGuid().ToString(),
+                CacheKey = Guid.NewGuid().ToString(),
                 UpdateDate = DateTimeOffset.UtcNow,
-                Value = Guid.NewGuid().ToString(),
+                CacheValue = Guid.NewGuid().ToString(),
             };
             return model;
         }
@@ -138,7 +136,7 @@ namespace ServiceBricks.Xunit
         public override void UpdateObject(CacheDataDto dto)
         {
             dto.ExpirationDate = DateTimeOffset.UtcNow.AddDays(1);
-            dto.Value = Guid.NewGuid().ToString();
+            dto.CacheValue = Guid.NewGuid().ToString();
         }
 
         public override void ValidateObjects(CacheDataDto clientDto, CacheDataDto serviceDto, HttpMethod method)
@@ -151,9 +149,9 @@ namespace ServiceBricks.Xunit
 
             Assert.True(serviceDto.ExpirationDate == clientDto.ExpirationDate);
 
-            Assert.True(serviceDto.Key == clientDto.Key);
+            Assert.True(serviceDto.CacheKey == clientDto.CacheKey);
 
-            Assert.True(serviceDto.Value == clientDto.Value);
+            Assert.True(serviceDto.CacheValue == clientDto.CacheValue);
 
             //UpdateDateRule
             if (method == HttpMethod.Post || method == HttpMethod.Put)
@@ -175,7 +173,7 @@ namespace ServiceBricks.Xunit
             queries.Add(qb.Build());
 
             qb = ServiceQueryRequestBuilder.New().
-                IsEqual(nameof(CacheDataDto.Key), dto.Key);
+                IsEqual(nameof(CacheDataDto.CacheKey), dto.CacheKey);
             queries.Add(qb.Build());
 
             qb = ServiceQueryRequestBuilder.New().
@@ -187,7 +185,7 @@ namespace ServiceBricks.Xunit
             queries.Add(qb.Build());
 
             qb = ServiceQueryRequestBuilder.New().
-                IsEqual(nameof(CacheDataDto.Value), dto.Value);
+                IsEqual(nameof(CacheDataDto.CacheValue), dto.CacheValue);
             queries.Add(qb.Build());
 
             return queries;

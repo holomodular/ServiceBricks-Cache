@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Hosting;
 using ServiceBricks;
-using ServiceBricks.Logging.InMemory;
 using ServiceBricks.Cache.AzureDataTables;
-using System.Configuration;
+using ServiceBricks.Logging.InMemory;
 using WebApp.Extensions;
 
 namespace WebApp

@@ -1,9 +1,9 @@
 ﻿namespace ServiceBricks.Cache
 {
     /// <summary>
-    /// This is the API service for a Data domain object.
+    /// This is a REST API client for the CacheDataDto.
     /// </summary>
-    public interface ICacheDataApiClient : IApiClient<CacheDataDto>, ICacheDataApiService
+    public partial interface ICacheDataApiClient : IApiClient<CacheDataDto>, ICacheDataApiService
     {
     }
 }

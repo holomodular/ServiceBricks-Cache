@@ -1,11 +1,8 @@
-using Microsoft.AspNetCore.Hosting;
-using ServiceBricks;
-using ServiceBricks.Cache;
-using ServiceBricks.Cache.MongoDb;
-using System.Configuration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+using ServiceBricks.Cache;
+using ServiceBricks.Cache.MongoDb;
 
 namespace ServiceBricks.Xunit
 {

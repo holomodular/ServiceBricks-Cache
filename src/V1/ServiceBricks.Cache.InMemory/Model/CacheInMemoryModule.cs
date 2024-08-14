@@ -3,24 +3,35 @@ using System.Reflection;
 
 namespace ServiceBricks.Cache.InMemory
 {
-    public class CacheInMemoryModule : IModule
+    /// <summary>
+    /// The module definition for the ServiceBricks Cache InMemory module.
+    /// </summary>
+    public partial class CacheInMemoryModule : IModule
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public CacheInMemoryModule()
         {
-            AdminHtml = string.Empty;
-            Name = "Cache EntityFrameworkCore Brick";
-            Description = @"The Cache EntityFrameworkCore Brick implements the EntityFrameworkCore provider.";
             DependentModules = new List<IModule>()
             {
                 new CacheEntityFrameworkCoreModule()
             };
         }
 
-        public string Name { get; }
-        public string Description { get; }
-        public string AdminHtml { get; }
-        public List<Assembly> AutomapperAssemblies { get; }
-        public List<Assembly> ViewAssemblies { get; }
+        /// <summary>
+        /// The list of dependent modules.
+        /// </summary>
         public List<IModule> DependentModules { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain automapper profiles.
+        /// </summary>
+        public List<Assembly> AutomapperAssemblies { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain views.
+        /// </summary>
+        public List<Assembly> ViewAssemblies { get; }
     }
 }

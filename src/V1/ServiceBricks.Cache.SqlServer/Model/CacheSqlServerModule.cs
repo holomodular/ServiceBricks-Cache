@@ -3,8 +3,14 @@ using System.Reflection;
 
 namespace ServiceBricks.Cache.SqlServer
 {
-    public class CacheSqlServerModule : IModule
+    /// <summary>
+    /// The module definition for the ServiceBricks Cache SqlServer module.
+    /// </summary>
+    public partial class CacheSqlServerModule : IModule
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public CacheSqlServerModule()
         {
             DependentModules = new List<IModule>()
@@ -13,8 +19,19 @@ namespace ServiceBricks.Cache.SqlServer
             };
         }
 
-        public List<Assembly> AutomapperAssemblies { get; }
-        public List<Assembly> ViewAssemblies { get; }
+        /// <summary>
+        /// The list of dependent modules.
+        /// </summary>
         public List<IModule> DependentModules { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain automapper profiles.
+        /// </summary>
+        public List<Assembly> AutomapperAssemblies { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain views.
+        /// </summary>
+        public List<Assembly> ViewAssemblies { get; }
     }
 }

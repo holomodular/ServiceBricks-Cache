@@ -3,31 +3,24 @@
 namespace ServiceBricks.Cache.AzureDataTables
 {
     /// <summary>
-    /// This is a business rule for the LogMessage object to set the
-    /// partitionkey and rowkey of the object before create.
+    /// This is a business rule for creating a CacheData domain object. It will set the PartitionKey and RowKey.
     /// </summary>
-    public partial class CacheDataCreateRule : BusinessRule
+    public sealed class CacheDataCreateRule : BusinessRule
     {
-        /// <summary>
-        /// Internal.
-        /// </summary>
-        protected readonly ILogger _logger;
-
-        private readonly ITimezoneService _timezoneService;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="loggerFactory"></param>
-        public CacheDataCreateRule(ILoggerFactory loggerFactory, ITimezoneService timezoneService)
+        public CacheDataCreateRule(ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger<CacheDataCreateRule>();
-            _timezoneService = timezoneService;
             Priority = PRIORITY_LOW;
         }
 
         /// <summary>
-        /// Register a rule for a domain object.
+        /// Register the business rule to the DomainCreateBeforeEvent
         /// </summary>
         public static void RegisterRule(IBusinessRuleRegistry registry)
         {
@@ -47,10 +40,12 @@ namespace ServiceBricks.Cache.AzureDataTables
 
             try
             {
-                if (context.Object is DomainCreateBeforeEvent<CacheData> ei)
+                // AI: Make sure the context object is the correct type
+                if (context.Object is DomainCreateBeforeEvent<CacheData> e)
                 {
-                    var item = ei.DomainObject;
-                    item.PartitionKey = item.Key;
+                    // AI: Set the PartitionKey and RowKey
+                    var item = e.DomainObject;
+                    item.PartitionKey = item.CacheKey;
                     item.RowKey = string.Empty;
                 }
             }

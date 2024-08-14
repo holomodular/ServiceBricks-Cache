@@ -8,9 +8,14 @@ namespace ServiceBricks.Cache.MongoDb
     /// This is the storage repository for the Log module.
     /// </summary>
     /// <typeparam name="TDomain"></typeparam>
-    public class CacheStorageRepository<TDomain> : MongoDbStorageRepository<TDomain>
+    public partial class CacheStorageRepository<TDomain> : MongoDbStorageRepository<TDomain>
         where TDomain : class, IMongoDbDomainObject<TDomain>, new()
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="logFactory"></param>
+        /// <param name="configuration"></param>
         public CacheStorageRepository(
             ILoggerFactory logFactory,
             IConfiguration configuration)

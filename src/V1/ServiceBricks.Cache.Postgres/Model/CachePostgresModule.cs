@@ -3,8 +3,14 @@ using System.Reflection;
 
 namespace ServiceBricks.Cache.Postgres
 {
-    public class CachePostgresModule : IModule
+    /// <summary>
+    /// The module definition for the ServiceBricks Cache Postgres module.
+    /// </summary>
+    public partial class CachePostgresModule : IModule
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public CachePostgresModule()
         {
             DependentModules = new List<IModule>()
@@ -13,8 +19,19 @@ namespace ServiceBricks.Cache.Postgres
             };
         }
 
-        public List<Assembly> AutomapperAssemblies { get; }
-        public List<Assembly> ViewAssemblies { get; }
+        /// <summary>
+        /// The list of dependent modules.
+        /// </summary>
         public List<IModule> DependentModules { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain automapper profiles.
+        /// </summary>
+        public List<Assembly> AutomapperAssemblies { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain views.
+        /// </summary>
+        public List<Assembly> ViewAssemblies { get; }
     }
 }

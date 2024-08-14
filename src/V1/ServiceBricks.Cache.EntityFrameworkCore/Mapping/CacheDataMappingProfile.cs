@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace ServiceBricks.Cache.MongoDb
+namespace ServiceBricks.Cache.EntityFrameworkCore
 {
     /// <summary>
     /// This is an automapper profile for the CacheData domain object.
@@ -12,13 +12,13 @@ namespace ServiceBricks.Cache.MongoDb
         /// </summary>
         public CacheDataMappingProfile()
         {
-            // AI: Map the CacheDataDto to the CacheData
+            // AI: Add mappings for CacheDataDto and CacheData
             CreateMap<CacheDataDto, CacheData>()
                 .ForMember(x => x.CreateDate, y => y.Ignore())
-                .ForMember(x => x.Id, y => y.MapFrom(z => z.StorageKey));
+                .ForMember(x => x.CacheKey, y => y.MapFrom(z => string.IsNullOrEmpty(z.CacheKey) ? z.StorageKey : z.CacheKey));
 
             CreateMap<CacheData, CacheDataDto>()
-                .ForMember(x => x.StorageKey, y => y.MapFrom(z => z.Id));
+                .ForMember(x => x.StorageKey, y => y.MapFrom(z => z.CacheKey));
         }
     }
 }

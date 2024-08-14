@@ -1,9 +1,6 @@
-using Microsoft.AspNetCore.Hosting;
 using ServiceBricks;
-using ServiceBricks.Cache;
 using ServiceBricks.Cache.Cosmos;
 using ServiceBricks.Logging.InMemory;
-using System.Configuration;
 using WebApp.Extensions;
 
 namespace WebApp

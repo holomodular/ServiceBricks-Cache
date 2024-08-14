@@ -2,25 +2,35 @@
 
 namespace ServiceBricks.Cache.EntityFrameworkCore
 {
-    public class CacheEntityFrameworkCoreModule : IModule
+    /// <summary>
+    /// The module definition for the ServiceBricks Cache EntityFrameworkCore module.
+    /// </summary>
+    public partial class CacheEntityFrameworkCoreModule : IModule
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public CacheEntityFrameworkCoreModule()
         {
-            AdminHtml = string.Empty;
-            Name = "Cache EntityFrameworkCore Brick";
-            Description = @"The Cache EntityFrameworkCore Brick implements the Entity Framework Core provider.";
             AutomapperAssemblies = new List<Assembly>()
             {
                 typeof(CacheEntityFrameworkCoreModule).Assembly
             };
         }
 
-        public string Name { get; }
-        public string Description { get; }
-        public string AdminHtml { get; }
-        public List<Assembly> AutomapperAssemblies { get; }
-        public List<Assembly> ViewAssemblies { get; }
-
+        /// <summary>
+        /// The list of dependent modules.
+        /// </summary>
         public List<IModule> DependentModules { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain automapper profiles.
+        /// </summary>
+        public List<Assembly> AutomapperAssemblies { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain views.
+        /// </summary>
+        public List<Assembly> ViewAssemblies { get; }
     }
 }

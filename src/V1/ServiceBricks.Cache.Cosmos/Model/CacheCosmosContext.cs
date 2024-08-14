@@ -1,20 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using ServiceBricks.Storage.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 using ServiceBricks.Cache.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.Cosmos
 {
-    // dotnet ef migrations add CacheV1 --context CacheCosmosContext --startup-project ../Test/MigrationsHost
-
     /// <summary>
     /// This is the database context for the Cache module.
     /// </summary>
     public partial class CacheCosmosContext : DbContext
     {
-        private DbContextOptions<CacheCosmosContext> _options = null;
+        protected DbContextOptions<CacheCosmosContext> _options = null;
 
         /// <summary>
         /// Constructor.
@@ -28,7 +23,7 @@ namespace ServiceBricks.Cache.Cosmos
         /// <summary>
         /// Cache Data.
         /// </summary>
-        public virtual DbSet<CacheData> CacheData { get; set; }
+        public virtual DbSet<CacheData> CacheDatas { get; set; }
 
         /// <summary>
         /// OnModelCreating.
@@ -38,9 +33,21 @@ namespace ServiceBricks.Cache.Cosmos
         {
             base.OnModelCreating(builder);
 
+            // AI: Set the default container name
             builder.Model.SetDefaultContainer(CacheCosmosConstants.DEFAULT_CONTAINER_NAME);
 
-            builder.Entity<CacheData>().HasKey(key => key.Key);
+            // AI: Create the model for each table
+            builder.Entity<CacheData>().HasKey(key => key.CacheKey);
+        }
+
+        /// <summary>
+        /// Create context.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual CacheCosmosContext CreateDbContext(string[] args)
+        {
+            return new CacheCosmosContext(_options);
         }
     }
 }

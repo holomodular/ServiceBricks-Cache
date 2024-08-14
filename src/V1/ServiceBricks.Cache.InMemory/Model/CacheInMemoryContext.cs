@@ -1,20 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using ServiceBricks.Storage.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 using ServiceBricks.Cache.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.InMemory
 {
-    // dotnet ef migrations add CacheV1 --context CacheInMemoryContext --startup-project ../Tests/WebApp
-
     /// <summary>
     /// This is the database context for the Cache module.
     /// </summary>
     public partial class CacheInMemoryContext : DbContext, IDesignTimeDbContextFactory<CacheInMemoryContext>
     {
-        private DbContextOptions<CacheInMemoryContext> _options = null;
+        protected DbContextOptions<CacheInMemoryContext> _options = null;
 
         /// <summary>
         /// Constructor.
@@ -52,10 +49,8 @@ namespace ServiceBricks.Cache.InMemory
         {
             base.OnModelCreating(builder);
 
-            //Set default schema
-            //builder.HasDefaultSchema(CacheInMemoryConstants.DATABASE_SCHEMA_NAME);
-
-            builder.Entity<CacheData>().HasKey(key => key.Key);
+            // AI: Setup the entities to the model
+            builder.Entity<CacheData>().HasKey(key => key.CacheKey);
         }
 
         /// <summary>

@@ -1,23 +1,28 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-using ServiceBricks.Storage.MongoDb;
 
 namespace ServiceBricks.Cache.MongoDb
 {
     /// <summary>
-    /// IApplicationBuilder extensions for Cache.
+    /// Extensions to start the ServiceBricks Cache MongoDb module.
     /// </summary>
     public static partial class ApplicationBuilderExtensions
     {
+        /// <summary>
+        /// Flag to indicate if the module has been started.
+        /// </summary>
         public static bool ModuleStarted = false;
 
+        /// <summary>
+        /// Start the ServiceBricks Cache MongoDb module.
+        /// </summary>
+        /// <param name="applicationBuilder"></param>
+        /// <returns></returns>
         public static IApplicationBuilder StartServiceBricksCacheMongoDb(this IApplicationBuilder applicationBuilder)
         {
+            // AI: Flag the module as started
             ModuleStarted = true;
 
-            // Start core
+            // AI: Start the parent module
             applicationBuilder.StartServiceBricksCache();
 
             return applicationBuilder;

@@ -1,9 +1,9 @@
 ﻿namespace ServiceBricks.Cache.EntityFrameworkCore
 {
     /// <summary>
-    /// Constants for the Cache module.
+    /// These are constants for the ServiceBricks Cache EntityFrameworkCore module.
     /// </summary>
-    public static class CacheEntityFrameworkCoreConstants
+    public static partial class CacheEntityFrameworkCoreConstants
     {
     }
 }

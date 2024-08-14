@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using ServiceBricks.Storage.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
 using ServiceBricks.Cache.EntityFrameworkCore;
+using ServiceBricks.Storage.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.SqlServer
 {
@@ -14,7 +13,7 @@ namespace ServiceBricks.Cache.SqlServer
     /// </summary>
     public partial class CacheSqlServerContext : DbContext, IDesignTimeDbContextFactory<CacheSqlServerContext>
     {
-        private DbContextOptions<CacheSqlServerContext> _options = null;
+        protected DbContextOptions<CacheSqlServerContext> _options = null;
 
         /// <summary>
         /// Constructor.
@@ -58,10 +57,11 @@ namespace ServiceBricks.Cache.SqlServer
         {
             base.OnModelCreating(builder);
 
-            //Set default schema
+            // AI: Set the default schema
             builder.HasDefaultSchema(CacheSqlServerConstants.DATABASE_SCHEMA_NAME);
 
-            builder.Entity<CacheData>().HasKey(key => key.Key);
+            // AI: Setup the entities to the model
+            builder.Entity<CacheData>().HasKey(key => key.CacheKey);
         }
 
         /// <summary>

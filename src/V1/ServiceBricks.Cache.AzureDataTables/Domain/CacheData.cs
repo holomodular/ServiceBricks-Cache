@@ -1,6 +1,4 @@
-﻿using Azure;
-using Azure.Data.Tables;
-using ServiceBricks.Storage.AzureDataTables;
+﻿using ServiceBricks.Storage.AzureDataTables;
 
 namespace ServiceBricks.Cache.AzureDataTables
 {
@@ -9,14 +7,29 @@ namespace ServiceBricks.Cache.AzureDataTables
     /// </summary>
     public partial class CacheData : AzureDataTablesDomainObject<CacheData>, IDpCreateDate, IDpUpdateDate
     {
-        public CacheData()
-        {
-        }
+        /// <summary>
+        /// The cache key.
+        /// </summary>
+        public string CacheKey { get; set; }
 
-        public virtual string Key { get; set; }
-        public virtual DateTimeOffset CreateDate { get; set; }
-        public virtual DateTimeOffset UpdateDate { get; set; }
-        public virtual DateTimeOffset? ExpirationDate { get; set; }
-        public virtual string Value { get; set; }
+        /// <summary>
+        /// The value.
+        /// </summary>
+        public string CacheValue { get; set; }
+
+        /// <summary>
+        /// The creation date.
+        /// </summary>
+        public DateTimeOffset CreateDate { get; set; }
+
+        /// <summary>
+        /// The update date.
+        /// </summary>
+        public DateTimeOffset UpdateDate { get; set; }
+
+        /// <summary>
+        /// The expiration date.
+        /// </summary>
+        public DateTimeOffset? ExpirationDate { get; set; }
     }
 }

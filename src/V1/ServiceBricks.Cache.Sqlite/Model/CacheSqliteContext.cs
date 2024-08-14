@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using ServiceBricks.Storage.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-
-using ServiceBricks.Cache.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.Extensions.Configuration;
+using ServiceBricks.Cache.EntityFrameworkCore;
+using ServiceBricks.Storage.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.Sqlite
 {
@@ -15,7 +14,7 @@ namespace ServiceBricks.Cache.Sqlite
     /// </summary>
     public partial class CacheSqliteContext : DbContext, IDesignTimeDbContextFactory<CacheSqliteContext>
     {
-        private DbContextOptions<CacheSqliteContext> _options = null;
+        protected DbContextOptions<CacheSqliteContext> _options = null;
 
         /// <summary>
         /// Constructor.
@@ -58,10 +57,11 @@ namespace ServiceBricks.Cache.Sqlite
         {
             base.OnModelCreating(builder);
 
-            //Set default schema
+            // AI: Set the default schema
             builder.HasDefaultSchema(CacheSqliteConstants.DATABASE_SCHEMA_NAME);
 
-            builder.Entity<CacheData>().HasKey(key => key.Key);
+            // AI: Setup the entities to the model
+            builder.Entity<CacheData>().HasKey(key => key.CacheKey);
         }
 
         /// <summary>
@@ -70,8 +70,12 @@ namespace ServiceBricks.Cache.Sqlite
         /// <param name="configurationBuilder"></param>
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {
-            configurationBuilder.Properties<DateTimeOffset>()
-            .HaveConversion<DateTimeOffsetToBytesConverter>();
+            configurationBuilder
+                .Properties<DateTimeOffset>()
+                .HaveConversion<DateTimeOffsetToBytesConverter>();
+            configurationBuilder
+                .Properties<DateTimeOffset?>()
+                .HaveConversion<DateTimeOffsetToBytesConverter>();
         }
 
         /// <summary>

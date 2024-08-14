@@ -1,18 +1,33 @@
 ﻿namespace ServiceBricks.Cache
 {
     /// <summary>
-    /// This is the Data DTO.
+    /// This is a CacheData data transfer object.
     /// </summary>
     public partial class CacheDataDto : DataTransferObject
     {
-        public CacheDataDto()
-        {
-        }
+        /// <summary>
+        /// The cache key.
+        /// </summary>
+        public virtual string CacheKey { get; set; }
 
-        public string Key { get; set; }
-        public DateTimeOffset CreateDate { get; set; }
-        public DateTimeOffset UpdateDate { get; set; }
-        public DateTimeOffset? ExpirationDate { get; set; }
-        public string Value { get; set; }
+        /// <summary>
+        /// The value.
+        /// </summary>
+        public virtual string CacheValue { get; set; }
+
+        /// <summary>
+        /// The creation date.
+        /// </summary>
+        public virtual DateTimeOffset CreateDate { get; set; }
+
+        /// <summary>
+        /// The update date.
+        /// </summary>
+        public virtual DateTimeOffset UpdateDate { get; set; }
+
+        /// <summary>
+        /// The expiration date.
+        /// </summary>
+        public virtual DateTimeOffset? ExpirationDate { get; set; }
     }
 }

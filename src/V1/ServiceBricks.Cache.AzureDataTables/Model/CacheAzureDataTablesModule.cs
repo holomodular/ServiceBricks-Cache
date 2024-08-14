@@ -2,13 +2,16 @@
 
 namespace ServiceBricks.Cache.AzureDataTables
 {
-    public class CacheAzureDataTablesModule : IModule
+    /// <summary>
+    /// The module definition for the ServiceBricks Cache Azure Data Tables module.
+    /// </summary>
+    public partial class CacheAzureDataTablesModule : IModule
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public CacheAzureDataTablesModule()
         {
-            AdminHtml = string.Empty;
-            Name = "Cache AzureDataTables Brick";
-            Description = @"The Cache AzureDataTables Brick implements the Azure Data Tables provider.";
             AutomapperAssemblies = new List<Assembly>()
             {
                 typeof(CacheAzureDataTablesModule).Assembly
@@ -19,12 +22,19 @@ namespace ServiceBricks.Cache.AzureDataTables
             };
         }
 
-        public string Name { get; }
-        public string Description { get; }
-        public string AdminHtml { get; }
-        public List<Assembly> AutomapperAssemblies { get; }
-        public List<Assembly> ViewAssemblies { get; }
-
+        /// <summary>
+        /// The list of dependent modules.
+        /// </summary>
         public List<IModule> DependentModules { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain automapper profiles.
+        /// </summary>
+        public List<Assembly> AutomapperAssemblies { get; }
+
+        /// <summary>
+        /// The list of assemblies that contain views.
+        /// </summary>
+        public List<Assembly> ViewAssemblies { get; }
     }
 }

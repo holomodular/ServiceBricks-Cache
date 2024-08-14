@@ -1,28 +1,31 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using ServiceBricks.Storage.EntityFrameworkCore;
 using ServiceBricks.Cache.EntityFrameworkCore;
+using ServiceBricks.Storage.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.Postgres
 {
     /// <summary>
-    /// IServiceCollection extensions for the Cache Brick.
+    /// Extensions to add the ServiceBricks Cache Postgres module to the service collection.
     /// </summary>
-    public static class ServiceCollectionExtensions
+    public static partial class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Add the ServiceBricks Cache Postgres module to the service collection.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddServiceBricksCachePostgres(this IServiceCollection services, IConfiguration configuration)
         {
-            // Add to module registry for automapper
+            // AI: Add the module to the ModuleRegistry
             ModuleRegistry.Instance.RegisterItem(typeof(CachePostgresModule), new CachePostgresModule());
 
-            // Add Core service
+            // AI: Add parent module
             services.AddServiceBricksCacheEntityFrameworkCore(configuration);
 
-            //Register Database
+            // AI: Register the database for the module
             var builder = new DbContextOptionsBuilder<CachePostgresContext>();
             string connectionString = configuration.GetPostgresConnectionString(
                 CachePostgresConstants.APPSETTING_CONNECTION_STRING);
@@ -35,7 +38,7 @@ namespace ServiceBricks.Cache.Postgres
             services.AddSingleton<DbContextOptions<CachePostgresContext>>(builder.Options);
             services.AddDbContext<CachePostgresContext>(c => { c = builder; }, ServiceLifetime.Scoped);
 
-            // Storage Services
+            // AI: Add storage services for the module. Each domain object should have its own storage repository.
             services.AddScoped<IStorageRepository<CacheData>, CacheStorageRepository<CacheData>>();
 
             return services;

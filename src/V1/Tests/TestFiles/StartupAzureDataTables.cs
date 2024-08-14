@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Hosting;
-using ServiceBricks;
-using ServiceBricks.Cache;
-using System.Configuration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+using ServiceBricks.Cache;
 using ServiceBricks.Cache.AzureDataTables;
 
 namespace ServiceBricks.Xunit

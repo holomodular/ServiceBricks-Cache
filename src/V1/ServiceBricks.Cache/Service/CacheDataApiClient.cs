@@ -1,13 +1,19 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace ServiceBricks.Cache
 {
-    public class CacheDataApiClient : ApiClient<CacheDataDto>, ICacheDataApiClient
+    /// <summary>
+    /// This class is an REST API client for the CacheDataDto.
+    /// </summary>
+    public partial class CacheDataApiClient : ApiClient<CacheDataDto>, ICacheDataApiClient
     {
-        protected readonly IConfiguration _configuration;
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="loggerFactory"></param>
+        /// <param name="httpClientFactory"></param>
+        /// <param name="configuration"></param>
         public CacheDataApiClient(
             ILoggerFactory loggerFactory,
             IHttpClientFactory httpClientFactory,
