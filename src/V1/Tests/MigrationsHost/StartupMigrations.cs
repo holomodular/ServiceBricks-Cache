@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ServiceBricks.Cache.Postgres;
+
+//using ServiceBricks.Cache.Postgres;
 
 namespace ServiceBricks.Xunit
 {
@@ -20,7 +21,7 @@ namespace ServiceBricks.Xunit
             //**************************
             //UNCOMMENT THE ONE YOU NEED
             //**************************
-            services.AddServiceBricksCachePostgres(Configuration);
+            //services.AddServiceBricksCachePostgres(Configuration);
             //services.AddServiceBricksCacheSqlServer(Configuration);
             //services.AddServiceBricksCacheSqlite(Configuration);
 
@@ -37,7 +38,7 @@ namespace ServiceBricks.Xunit
             //**************************
             //UNCOMMENT THE ONE YOU NEED
             //**************************
-            app.StartServiceBricksCachePostgres();
+            //app.StartServiceBricksCachePostgres();
             //app.StartServiceBricksCacheSqlServer();
             //app.StartServiceBricksCacheSqlite();
         }
