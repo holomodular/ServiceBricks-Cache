@@ -6,7 +6,7 @@ namespace ServiceBricks.Cache
     /// <summary>
     /// This is a background task that queries for expired data and deletes them.
     /// </summary>
-    public static class CacheExpirationTask
+    public static partial class CacheExpirationTask
     {
         /// <summary>
         /// Queue the work to the background task queue.
@@ -30,7 +30,6 @@ namespace ServiceBricks.Cache
         /// </summary>
         public class Worker : ITaskWork<Detail, Worker>
         {
-            private readonly ILogger<Worker> _logger;
             private readonly ICacheDataApiService _dataApiService;
 
             /// <summary>
@@ -39,10 +38,8 @@ namespace ServiceBricks.Cache
             /// <param name="logger"></param>
             /// <param name="dataApiService"></param>
             public Worker(
-                ILogger<Worker> logger,
                 ICacheDataApiService dataApiService)
             {
-                _logger = logger;
                 _dataApiService = dataApiService;
             }
 
@@ -56,6 +53,8 @@ namespace ServiceBricks.Cache
             {
                 // AI: Create a query to find expired cache data.
                 var query = new ServiceQueryRequestBuilder()
+                    .IsNotNull(nameof(CacheDataDto.ExpirationDate))
+                    .And()
                     .IsLessThanOrEqual(nameof(CacheDataDto.ExpirationDate), DateTimeOffset.UtcNow.ToString("o"))
                     .Build();
 
@@ -66,10 +65,6 @@ namespace ServiceBricks.Cache
 
                 foreach (var item in respExpired.Item.List)
                 {
-                    // AI: Just in case the expiration date is not set, skip the item.
-                    if (!item.ExpirationDate.HasValue)
-                        continue;
-
                     // AI: Delete the expired cache data.
                     var respDelete = await _dataApiService.DeleteAsync(item.StorageKey);
                 }

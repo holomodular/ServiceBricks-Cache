@@ -1,6 +1,7 @@
 using ServiceBricks;
 using ServiceBricks.Cache.Cosmos;
-using ServiceBricks.Logging.InMemory;
+
+//using ServiceBricks.Logging.InMemory;
 using WebApp.Extensions;
 
 namespace WebApp
@@ -17,7 +18,7 @@ namespace WebApp
         public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddServiceBricks(Configuration);
-            services.AddServiceBricksLoggingInMemory(Configuration);
+            //services.AddServiceBricksLoggingInMemory(Configuration);
             services.AddServiceBricksCacheCosmos(Configuration);
             services.AddCustomWebsite(Configuration);
             services.AddServiceBricksComplete();
@@ -26,7 +27,7 @@ namespace WebApp
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment)
         {
             app.StartServiceBricks();
-            app.StartServiceBricksLoggingInMemory();
+            //app.StartServiceBricksLoggingInMemory();
             app.StartServiceBricksCacheCosmos();
             app.StartCustomWebsite(webHostEnvironment);
             var logger = app.ApplicationServices.GetRequiredService<ILogger<StartupCosmos>>();

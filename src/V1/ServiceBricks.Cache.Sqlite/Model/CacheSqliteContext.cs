@@ -7,7 +7,7 @@ using ServiceBricks.Storage.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.Sqlite
 {
-    // dotnet ef migrations add CacheV1 --context CacheSqliteContext --startup-project ../Test/MigrationsHost
+    // dotnet ef migrations add CacheV1 --context CacheSqliteContext --startup-project ../Tests/MigrationsHost
 
     /// <summary>
     /// This is the database context for the Cache module.
@@ -47,7 +47,7 @@ namespace ServiceBricks.Cache.Sqlite
         /// <summary>
         /// Cache Data.
         /// </summary>
-        public virtual DbSet<CacheData> CacheData { get; set; }
+        public virtual DbSet<CacheData> CacheDatas { get; set; }
 
         /// <summary>
         /// OnModelCreating.
@@ -57,11 +57,12 @@ namespace ServiceBricks.Cache.Sqlite
         {
             base.OnModelCreating(builder);
 
-            // AI: Set the default schema
-            builder.HasDefaultSchema(CacheSqliteConstants.DATABASE_SCHEMA_NAME);
+            // AI: Set the default schema (SQLite does not support schemas)
+            //builder.HasDefaultSchema(CacheSqliteConstants.DATABASE_SCHEMA_NAME);
 
             // AI: Setup the entities to the model
             builder.Entity<CacheData>().HasKey(key => key.CacheKey);
+            builder.Entity<CacheData>().HasIndex(key => new { key.ExpirationDate }); // For background process
         }
 
         /// <summary>

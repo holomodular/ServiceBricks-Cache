@@ -6,7 +6,7 @@ using ServiceBricks.Storage.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.SqlServer
 {
-    // dotnet ef migrations add CacheV1 --context CacheSqlServerContext --startup-project ../Test/MigrationsHost
+    // dotnet ef migrations add CacheV1 --context CacheSqlServerContext --startup-project ../Tests/MigrationsHost
 
     /// <summary>
     /// This is the database context for the Cache module.
@@ -47,7 +47,7 @@ namespace ServiceBricks.Cache.SqlServer
         /// <summary>
         /// Cache Data.
         /// </summary>
-        public virtual DbSet<CacheData> CacheData { get; set; }
+        public virtual DbSet<CacheData> CacheDatas { get; set; }
 
         /// <summary>
         /// OnModelCreating.
@@ -62,6 +62,7 @@ namespace ServiceBricks.Cache.SqlServer
 
             // AI: Setup the entities to the model
             builder.Entity<CacheData>().HasKey(key => key.CacheKey);
+            builder.Entity<CacheData>().HasIndex(key => new { key.ExpirationDate }); // For background process
         }
 
         /// <summary>

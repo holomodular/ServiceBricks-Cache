@@ -24,7 +24,6 @@ namespace ServiceBricks.Cache.Cosmos
             ModuleRegistry.Instance.RegisterItem(typeof(CacheCosmosModule), new CacheCosmosModule());
 
             // AI: Add the parent module
-            // AI: If the primary keys of the Cosmos models do not match the EFC module, we can't use EFC rules, so skip EFC and call start on the core module instead.
             services.AddServiceBricksCacheEntityFrameworkCore(configuration);
 
             // AI: Register the database for the module
@@ -42,10 +41,8 @@ namespace ServiceBricks.Cache.Cosmos
             services.AddScoped<IStorageRepository<CacheData>, CacheStorageRepository<CacheData>>();
 
             // AI: Register business rules for the module
-            // AI: If the primary keys of the Cosmos models match the EFC module, we can use the EFC rules
 
             // AI: Add API services for the module. Each DTO should have two registrations, one for the generic IApiService<> and one for the named interface
-            // AI: If the primary keys of the Cosmos models match the EFC module, we can use the EFC rules
 
             return services;
         }

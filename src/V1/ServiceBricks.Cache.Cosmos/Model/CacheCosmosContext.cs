@@ -33,11 +33,11 @@ namespace ServiceBricks.Cache.Cosmos
         {
             base.OnModelCreating(builder);
 
-            // AI: Set the default container name
-            builder.Model.SetDefaultContainer(CacheCosmosConstants.DEFAULT_CONTAINER_NAME);
-
             // AI: Create the model for each table
             builder.Entity<CacheData>().HasKey(key => key.CacheKey);
+            builder.Entity<CacheData>().HasPartitionKey(key => key.CacheKey);
+            builder.Entity<CacheData>().HasIndex(key => new { key.ExpirationDate }); // For background process
+            builder.Entity<CacheData>().ToContainer(CacheCosmosConstants.GetContainerName(nameof(CacheData)));
         }
 
         /// <summary>

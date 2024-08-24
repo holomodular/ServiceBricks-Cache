@@ -11,7 +11,7 @@ namespace ServiceBricks.Cache
     [Produces("application/json")]
     public partial class CacheDataApiController : AdminPolicyApiController<CacheDataDto>, ICacheDataApiController
     {
-        protected readonly ICacheDataApiService _dataApiService;
+        protected readonly ICacheDataApiService _cacheDataApiService;
 
         /// <summary>
         /// Constructor.
@@ -19,11 +19,11 @@ namespace ServiceBricks.Cache
         /// <param name="dataApiService"></param>
         /// <param name="apiOptions"></param>
         public CacheDataApiController(
-            ICacheDataApiService dataApiService,
+            ICacheDataApiService cacheDataApiService,
             IOptions<ApiOptions> apiOptions)
-            : base(dataApiService, apiOptions)
+            : base(cacheDataApiService, apiOptions)
         {
-            _dataApiService = dataApiService;
+            _cacheDataApiService = cacheDataApiService;
         }
     }
 }

@@ -18,6 +18,16 @@
         /// <summary>
         /// The default container name.
         /// </summary>
-        public const string DEFAULT_CONTAINER_NAME = "Cache";
+        public const string CONTAINER_PREFIX = "Cache";
+
+        /// <summary>
+        /// Get the container name for the given table name.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static string GetContainerName(string tableName)
+        {
+            return CONTAINER_PREFIX + tableName;
+        }
     }
 }

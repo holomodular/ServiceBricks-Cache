@@ -19,15 +19,8 @@
 		<ProjectReference Include="..\ServiceBricks.Cache.EntityFrameworkCore.Debug\ServiceBricks.Cache.EntityFrameworkCore.Debug.csproj" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.18" />
+	<ItemGroup>
+		<PackageReference Include="ServiceBricks.Storage.Postgres" Version="1.1.0-b" />
 	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.18" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
-	</ItemGroup>
+	
 </Project>

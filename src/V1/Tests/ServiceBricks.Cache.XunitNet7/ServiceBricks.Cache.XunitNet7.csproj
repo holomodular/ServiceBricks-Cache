@@ -10,11 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<Compile Include="..\TestFiles\CacheDataApiControllerTest.cs" Link="CacheDataApiControllerTest.cs" />
     <Compile Include="..\TestFiles\CacheDataTestManager.cs" Link="CacheDataTestManager.cs" />
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Xunit" Version="1.0.11" />
+		<PackageReference Include="ServiceBricks.Xunit" Version="1.1.0-b" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />

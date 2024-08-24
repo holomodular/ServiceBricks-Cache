@@ -6,7 +6,7 @@ namespace ServiceBricks.Cache
     /// This is a timer to execute the CacheExpirationTask to expire stale cache data.
     /// Do not seal the class to allow for overriding values.
     /// </summary>
-    public class CacheExpirationTimer : TaskTimerHostedService<CacheExpirationTask.Detail, CacheExpirationTask.Worker>
+    public partial class CacheExpirationTimer : TaskTimerHostedService<CacheExpirationTask.Detail, CacheExpirationTask.Worker>
     {
         /// <summary>
         /// Constructor.

@@ -39,7 +39,7 @@ namespace ServiceBricks.Cache.InMemory
         /// <summary>
         /// Cache Data.
         /// </summary>
-        public virtual DbSet<CacheData> CacheData { get; set; }
+        public virtual DbSet<CacheData> CacheDatas { get; set; }
 
         /// <summary>
         /// OnModelCreating.
@@ -51,6 +51,7 @@ namespace ServiceBricks.Cache.InMemory
 
             // AI: Setup the entities to the model
             builder.Entity<CacheData>().HasKey(key => key.CacheKey);
+            builder.Entity<CacheData>().HasIndex(key => new { key.ExpirationDate }); // For background process
         }
 
         /// <summary>
