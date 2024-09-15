@@ -19,12 +19,9 @@ namespace ServiceBricks.Xunit
             services.AddSingleton(Configuration);
             services.AddServiceBricks(Configuration);
 
-            //**************************
-            //UNCOMMENT THE ONE YOU NEED
-            //**************************
-            //services.AddServiceBricksCachePostgres(Configuration);
+            services.AddServiceBricksCachePostgres(Configuration);
             services.AddServiceBricksCacheSqlServer(Configuration);
-            //services.AddServiceBricksCacheSqlite(Configuration);
+            services.AddServiceBricksCacheSqlite(Configuration);
 
             // Remove all background tasks/timers for unit testing
 
@@ -36,12 +33,9 @@ namespace ServiceBricks.Xunit
             base.CustomConfigure(app);
             app.StartServiceBricks();
 
-            //**************************
-            //UNCOMMENT THE ONE YOU NEED
-            //**************************
-            //app.StartServiceBricksCachePostgres();
+            app.StartServiceBricksCachePostgres();
             app.StartServiceBricksCacheSqlServer();
-            //app.StartServiceBricksCacheSqlite();
+            app.StartServiceBricksCacheSqlite();
         }
     }
 }

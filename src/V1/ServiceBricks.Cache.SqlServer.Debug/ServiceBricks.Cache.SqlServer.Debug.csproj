@@ -9,6 +9,9 @@
 	<ItemGroup>
 	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Extensions\ApplicationBuilderExtensions.cs" Link="ApplicationBuilderExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Migrations\20240913121352_CacheV1.cs" Link="20240913121352_CacheV1.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Migrations\20240913121352_CacheV1.Designer.cs" Link="20240913121352_CacheV1.Designer.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Migrations\CacheSqlServerContextModelSnapshot.cs" Link="CacheSqlServerContextModelSnapshot.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Model\CacheSqlServerConstants.cs" Link="CacheSqlServerConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Model\CacheSqlServerContext.cs" Link="CacheSqlServerContext.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.SqlServer\Model\CacheSqlServerModule.cs" Link="CacheSqlServerModule.cs" />
@@ -20,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.SqlServer" Version="1.1.0-b" />
+		<PackageReference Include="ServiceBricks.Storage.SqlServer" Version="1.1.0-f" />
 	</ItemGroup>
 	
 </Project>

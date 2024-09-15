@@ -23,14 +23,14 @@ namespace ServiceBricks.Cache
         /// <summary>
         /// Timeout for heartbeat.
         /// </summary>
-        public TimeSpan HeartbeatTimeout { get; set; }
+        public virtual TimeSpan HeartbeatTimeout { get; set; }
 
         /// <summary>
         /// Determines if this server should run for the given process.
         /// </summary>
         /// <param name="processName"></param>
         /// <returns></returns>
-        public async Task<bool> ShouldThisServerRunForProcessAsync(string processName)
+        public virtual async Task<bool> ShouldThisServerRunForProcessAsync(string processName)
         {
             // AI: Get the server name
             string hostname = Dns.GetHostName();

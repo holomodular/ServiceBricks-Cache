@@ -24,7 +24,7 @@ namespace ServiceBricks.Cache
         /// </summary>
         public override TimeSpan TimerTickInterval
         {
-            get { return TimeSpan.FromMinutes(30); }
+            get { return TimeSpan.FromMinutes(5); }
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ServiceBricks.Cache
         /// </summary>
         public override TimeSpan TimerDueTime
         {
-            get { return TimeSpan.FromMinutes(1); }
+            get { return TimeSpan.FromSeconds(1); }
         }
 
         /// <summary>

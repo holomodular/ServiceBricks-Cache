@@ -9,6 +9,9 @@
 	<ItemGroup>
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Extensions\ApplicationBuilderExtensions.cs" Link="ApplicationBuilderExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\20240913121242_CacheV1.cs" Link="20240913121242_CacheV1.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\20240913121242_CacheV1.Designer.cs" Link="20240913121242_CacheV1.Designer.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\CachePostgresContextModelSnapshot.cs" Link="CachePostgresContextModelSnapshot.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Model\CachePostgresConstants.cs" Link="CachePostgresConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Model\CachePostgresContext.cs" Link="CachePostgresContext.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Model\CachePostgresModule.cs" Link="CachePostgresModule.cs" />
@@ -20,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.Postgres" Version="1.1.0-b" />
+		<PackageReference Include="ServiceBricks.Storage.Postgres" Version="1.1.0-f" />
 	</ItemGroup>
 	
 </Project>
