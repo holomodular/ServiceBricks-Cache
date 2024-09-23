@@ -20,11 +20,22 @@ namespace ServiceBricks.Cache.AzureDataTables
         }
 
         /// <summary>
-        /// Register the business rule to the DomainCreateBeforeEvent
+        /// Register the rule
         /// </summary>
-        public static void RegisterRule(IBusinessRuleRegistry registry)
+        public static void Register(IBusinessRuleRegistry registry)
         {
-            registry.RegisterItem(
+            registry.Register(
+                typeof(DomainCreateBeforeEvent<CacheData>),
+                typeof(CacheDataCreateRule));
+        }
+
+        /// <summary>
+        /// Unregister the rule
+        /// </summary>
+        /// <param name="registry"></param>
+        public static void UnRegister(IBusinessRuleRegistry registry)
+        {
+            registry.UnRegister(
                 typeof(DomainCreateBeforeEvent<CacheData>),
                 typeof(CacheDataCreateRule));
         }

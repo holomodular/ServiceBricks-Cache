@@ -30,10 +30,10 @@ namespace ServiceBricks.Cache.MongoDb
             services.AddScoped<ICacheDataApiService, CacheDataApiService>();
 
             // AI: Add business rules for the module
-            DomainCreateUpdateDateRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance);
-            DomainDateTimeOffsetRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
-            ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.RegisterRule(BusinessRuleRegistry.Instance);
-            DomainQueryPropertyRenameRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance, "StorageKey", "Id");
+            DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
+            DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
+            ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
+            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "Id");
 
             return services;
         }

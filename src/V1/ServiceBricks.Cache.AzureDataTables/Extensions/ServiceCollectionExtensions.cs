@@ -32,11 +32,11 @@ namespace ServiceBricks.Cache.AzureDataTables
             services.AddScoped<ICacheDataApiService, CacheDataApiService>();
 
             // AI: Register business rules for the module
-            DomainCreateUpdateDateRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance);
-            DomainDateTimeOffsetRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
-            ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.RegisterRule(BusinessRuleRegistry.Instance);
-            CacheDataCreateRule.RegisterRule(BusinessRuleRegistry.Instance);
-            DomainQueryPropertyRenameRule<CacheData>.RegisterRule(BusinessRuleRegistry.Instance, "StorageKey", "PartitionKey");
+            DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
+            DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
+            ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
+            CacheDataCreateRule.Register(BusinessRuleRegistry.Instance);
+            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "PartitionKey");
 
             return services;
         }
