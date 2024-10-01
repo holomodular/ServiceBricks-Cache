@@ -7,11 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Extensions\ApplicationBuilderExtensions.cs" Link="ApplicationBuilderExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Model\CacheCosmosConstants.cs" Link="CacheCosmosConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Model\CacheCosmosContext.cs" Link="CacheCosmosContext.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Model\CacheCosmosModule.cs" Link="CacheCosmosModule.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Rule\CacheCosmosModuleAddRule.cs" Link="CacheCosmosModuleAddRule.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Rule\CacheCosmosModuleStartRule.cs" Link="CacheCosmosModuleStartRule.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Cosmos\Storage\CacheStorageRepository.cs" Link="CacheStorageRepository.cs" />
 	</ItemGroup>
 
@@ -20,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.Cosmos" Version="1.1.0-g" />
+		<PackageReference Include="ServiceBricks.Storage.Cosmos" Version="1.1.0-k" />
 	</ItemGroup>
 	
 </Project>

@@ -11,7 +11,6 @@
 	  <Compile Include="..\ServiceBricks.Cache\Background\CacheExpirationTask.cs" Link="CacheExpirationTask.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Background\CacheExpirationTimer.cs" Link="CacheExpirationTimer.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Controllers\CacheDataApiController.cs" Link="CacheDataApiController.cs" />
-	  <Compile Include="..\ServiceBricks.Cache\Extensions\ApplicationBuilderExtensions.cs" Link="ApplicationBuilderExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Interface\ICacheDataApiClient.cs" Link="ICacheDataApiClient.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Interface\ICacheDataApiController.cs" Link="ICacheDataApiController.cs" />
@@ -19,11 +18,12 @@
 	  <Compile Include="..\ServiceBricks.Cache\Interface\ISingleServerProcessService.cs" Link="ISingleServerProcessService.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Model\CacheConstants.cs" Link="CacheConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Model\CacheModule.cs" Link="CacheModule.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Rule\CacheModuleAddRule.cs" Link="CacheModuleAddRule.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Service\CacheDataApiClient.cs" Link="CacheDataApiClient.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Service\SingleServerProcessService.cs" Link="SingleServerProcessService.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks" Version="1.1.0-g" />
+		<PackageReference Include="ServiceBricks" Version="1.1.0-k" />
 	</ItemGroup>
 </Project>

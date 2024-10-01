@@ -16,21 +16,15 @@ namespace ServiceBricks.Cache.EntityFrameworkCore
         /// <returns></returns>
         public static IServiceCollection AddServiceBricksCacheEntityFrameworkCore(this IServiceCollection services, IConfiguration configuration)
         {
-            // AI: Add the module to the ModuleRegistry
-            ModuleRegistry.Instance.RegisterItem(typeof(CacheEntityFrameworkCoreModule), new CacheEntityFrameworkCoreModule());
-
             // AI: Add the parent module
             services.AddServiceBricksCache(configuration);
 
-            // AI: Add API services for the module. Each DTO should have two registrations, one for the generic IApiService<> and one for the named interface
-            services.AddScoped<IApiService<CacheDataDto>, CacheDataApiService>();
-            services.AddScoped<ICacheDataApiService, CacheDataApiService>();
+            // AI: Add this module to the ModuleRegistry
+            ModuleRegistry.Instance.Register(CacheEntityFrameworkCoreModule.Instance);
 
-            // AI: Register business rules for the module
-            DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
-            DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
-            ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
-            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "CacheKey");
+            // AI: Add module business rules
+            CacheEntityFrameworkCoreModuleAddRule.Register(BusinessRuleRegistry.Instance);
+            ModuleSetStartedRule<CacheEntityFrameworkCoreModule>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }

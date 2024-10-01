@@ -16,27 +16,16 @@ namespace ServiceBricks.Cache.AzureDataTables
         /// <returns></returns>
         public static IServiceCollection AddServiceBricksCacheAzureDataTables(this IServiceCollection services, IConfiguration configuration)
         {
-            // AI: Add the module to the ModuleRegistry
-            ModuleRegistry.Instance.RegisterItem(typeof(CacheAzureDataTablesModule), new CacheAzureDataTablesModule());
-
-            // AI: Add parent module
+            // AI: Add the parent module first
             services.AddServiceBricksCache(configuration);
 
-            // AI: Configure all options for the module
+            // AI: Add this module to the ModuleRegistry
+            ModuleRegistry.Instance.Register(CacheAzureDataTablesModule.Instance);
 
-            // AI: Add storage services for the module. Each domain object should have its own storage repository
-            services.AddScoped<IStorageRepository<CacheData>, CacheStorageRepository<CacheData>>();
-
-            // AI: Add API services for the module. Each DTO should have two registrations, one for the generic IApiService<> and one for the named interface
-            services.AddScoped<IApiService<CacheDataDto>, CacheDataApiService>();
-            services.AddScoped<ICacheDataApiService, CacheDataApiService>();
-
-            // AI: Register business rules for the module
-            DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
-            DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
-            ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
-            CacheDataCreateRule.Register(BusinessRuleRegistry.Instance);
-            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "PartitionKey");
+            // AI: Add module business rules
+            CacheAzureDataTablesModuleAddRule.Register(BusinessRuleRegistry.Instance);
+            CacheAzureDataTablesModuleStartRule.Register(BusinessRuleRegistry.Instance);
+            ModuleSetStartedRule<CacheAzureDataTablesModule>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceBricks.Cache.Postgres;
 using ServiceBricks.Cache.Sqlite;
 using ServiceBricks.Cache.SqlServer;
-using ServiceBricks.Cache.Postgres;
 
 namespace ServiceBricks.Xunit
 {
@@ -25,17 +25,13 @@ namespace ServiceBricks.Xunit
 
             // Remove all background tasks/timers for unit testing
 
-            services.AddServiceBricksComplete();
+            services.AddServiceBricksComplete(Configuration);
         }
 
         public virtual void Configure(IApplicationBuilder app)
         {
             base.CustomConfigure(app);
             app.StartServiceBricks();
-
-            app.StartServiceBricksCachePostgres();
-            app.StartServiceBricksCacheSqlServer();
-            app.StartServiceBricksCacheSqlite();
         }
     }
 }

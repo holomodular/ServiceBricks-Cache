@@ -8,18 +8,18 @@
 
 	<ItemGroup>
 	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Domain\CacheData.cs" Link="CacheData.cs" />
-	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Extensions\ApplicationBuilderExtensions.cs" Link="ApplicationBuilderExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Mapping\CacheDataMappingProfile.cs" Link="CacheDataMappingProfile.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Model\CacheEntityFrameworkCoreConstants.cs" Link="CacheEntityFrameworkCoreConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Model\CacheEntityFrameworkCoreModule.cs" Link="CacheEntityFrameworkCoreModule.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Rule\CacheEntityFrameworkCoreModuleAddRule.cs" Link="CacheEntityFrameworkCoreModuleAddRule.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.EntityFrameworkCore\Service\CacheDataApiService.cs" Link="CacheDataApiService.cs" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.EntityFrameworkCore" Version="1.1.0-g" />
-	</ItemGroup>
+	
 	<ItemGroup>
 	  <ProjectReference Include="..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ServiceBricks.Storage.EntityFrameworkCore" Version="1.1.0-k" />
 	</ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
@@ -7,10 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Include="..\ServiceBricks.Cache.InMemory\Extensions\ApplicationBuilderExtensions.cs" Link="ApplicationBuilderExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.InMemory\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.InMemory\Model\CacheInMemoryContext.cs" Link="CacheInMemoryContext.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.InMemory\Model\CacheInMemoryModule.cs" Link="CacheInMemoryModule.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.InMemory\Rule\CacheInMemoryModuleAddRule.cs" Link="CacheInMemoryModuleAddRule.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.InMemory\Storage\CacheStorageRepository.cs" Link="CacheStorageRepository.cs" />
 	</ItemGroup>
 
@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.InMemory" Version="1.1.0-g" />
+		<PackageReference Include="ServiceBricks.Storage.InMemory" Version="1.1.0-k" />
 	</ItemGroup>
 	
 </Project>

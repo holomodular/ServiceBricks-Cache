@@ -16,24 +16,15 @@ namespace ServiceBricks.Cache.MongoDb
         /// <returns></returns>
         public static IServiceCollection AddServiceBricksCacheMongoDb(this IServiceCollection services, IConfiguration configuration)
         {
-            // AI: Add the module to the ModuleRegistry
-            ModuleRegistry.Instance.RegisterItem(typeof(CacheMongoDbModule), new CacheMongoDbModule());
-
             // AI: Add the parent module
             services.AddServiceBricksCache(configuration);
 
-            // AI: Add the storage services for the module for each domain object
-            services.AddScoped<IStorageRepository<CacheData>, CacheStorageRepository<CacheData>>();
+            // AI: Add this module to the ModuleRegistry
+            ModuleRegistry.Instance.Register(CacheMongoDbModule.Instance);
 
-            // AI: Add API services for the module. Each DTO should have two registrations, one for the generic IApiService<> and one for the named interface
-            services.AddScoped<IApiService<CacheDataDto>, CacheDataApiService>();
-            services.AddScoped<ICacheDataApiService, CacheDataApiService>();
-
-            // AI: Add business rules for the module
-            DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
-            DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
-            ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
-            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "Id");
+            // AI: Add module business rules
+            CacheMongoDbModuleAddRule.Register(BusinessRuleRegistry.Instance);
+            ModuleSetStartedRule<CacheMongoDbModule>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }

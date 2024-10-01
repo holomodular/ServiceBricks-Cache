@@ -50,7 +50,7 @@ namespace ServiceBricks.Cache
         public override bool TimerTickShouldProcessRun()
         {
             // AI: Check if the module is started and the timer is not currently running.
-            return ApplicationBuilderExtensions.ModuleStarted && !IsCurrentlyRunning;
+            return CacheModule.Instance.Started && !IsCurrentlyRunning;
         }
     }
 }

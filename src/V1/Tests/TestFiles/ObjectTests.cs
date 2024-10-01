@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using ServiceBricks.Cache;
 using ServiceBricks.Cache.EntityFrameworkCore;
-using ServiceQuery;
-using static ServiceBricks.Xunit.BusinessRuleTests;
 
 namespace ServiceBricks.Xunit
 {
@@ -90,6 +85,7 @@ namespace ServiceBricks.Xunit
             {
                 if (cts.Token.IsCancellationRequested)
                     break;
+                await Task.Delay(100);
             }
 
             await timer.StopAsync(CancellationToken.None);

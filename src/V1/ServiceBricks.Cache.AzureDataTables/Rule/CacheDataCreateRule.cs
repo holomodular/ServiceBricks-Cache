@@ -1,21 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace ServiceBricks.Cache.AzureDataTables
+﻿namespace ServiceBricks.Cache.AzureDataTables
 {
     /// <summary>
     /// This is a business rule for creating a CacheData domain object. It will set the PartitionKey and RowKey.
     /// </summary>
     public sealed class CacheDataCreateRule : BusinessRule
     {
-        private readonly ILogger _logger;
-
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="loggerFactory"></param>
-        public CacheDataCreateRule(ILoggerFactory loggerFactory)
+        public CacheDataCreateRule()
         {
-            _logger = loggerFactory.CreateLogger<CacheDataCreateRule>();
             Priority = PRIORITY_LOW;
         }
 
@@ -49,22 +43,23 @@ namespace ServiceBricks.Cache.AzureDataTables
         {
             var response = new Response();
 
-            try
+            // AI: Make sure the context object is the correct type
+            if (context == null || context.Object == null)
             {
-                // AI: Make sure the context object is the correct type
-                if (context.Object is DomainCreateBeforeEvent<CacheData> e)
-                {
-                    // AI: Set the PartitionKey and RowKey
-                    var item = e.DomainObject;
-                    item.PartitionKey = item.CacheKey;
-                    item.RowKey = string.Empty;
-                }
+                response.AddMessage(ResponseMessage.CreateError(LocalizationResource.PARAMETER_MISSING, "context"));
+                return response;
             }
-            catch (Exception ex)
+            var e = context.Object as DomainCreateBeforeEvent<CacheData>;
+            if (e == null || e.DomainObject == null)
             {
-                _logger.LogError(ex, ex.Message);
-                response.AddMessage(ResponseMessage.CreateError(LocalizationResource.ERROR_BUSINESS_RULE));
+                response.AddMessage(ResponseMessage.CreateError(LocalizationResource.PARAMETER_MISSING, "context"));
+                return response;
             }
+
+            // AI: Set the PartitionKey and RowKey
+            var item = e.DomainObject;
+            item.PartitionKey = item.CacheKey;
+            item.RowKey = string.Empty;
 
             return response;
         }

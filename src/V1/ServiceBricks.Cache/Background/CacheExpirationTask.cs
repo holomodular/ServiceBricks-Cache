@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using ServiceQuery;
+﻿using ServiceQuery;
 
 namespace ServiceBricks.Cache
 {

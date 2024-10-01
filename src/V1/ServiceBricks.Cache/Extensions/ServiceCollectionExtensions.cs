@@ -17,25 +17,11 @@ namespace ServiceBricks.Cache
         public static IServiceCollection AddServiceBricksCache(this IServiceCollection services, IConfiguration configuration)
         {
             // AI: Add the module to the ModuleRegistry
-            ModuleRegistry.Instance.RegisterItem(typeof(CacheModule), new CacheModule());
+            ModuleRegistry.Instance.Register(CacheModule.Instance);
 
-            // AI: Add hosted services for the module
-            services.AddHostedService<CacheExpirationTimer>();
-
-            // AI: Add workers for tasks in the module
-            services.AddScoped<CacheExpirationTask.Worker>();
-
-            // AI: Configure all options for the module
-
-            // AI: Add API Controllers for each DTO in the module
-            services.AddScoped<ICacheDataApiController, CacheDataApiController>();
-
-            // AI: Add any miscellaneous services for the module
-            services.AddScoped<ISingleServerProcessService, SingleServerProcessService>();
-
-            // AI: Register business rules for the module
-
-            // AI: Register servicebus subscriptions for the module
+            // AI: Add module business rules
+            CacheModuleAddRule.Register(BusinessRuleRegistry.Instance);
+            ModuleSetStartedRule<CacheModule>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }

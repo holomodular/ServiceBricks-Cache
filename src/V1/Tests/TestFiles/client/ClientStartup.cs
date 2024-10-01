@@ -23,7 +23,7 @@ namespace ServiceBricks.Cache.Client.Xunit
             // Register TestManagers
             services.AddScoped<ITestManager<CacheDataDto>, CacheDataTestManager>();
 
-            services.AddServiceBricksComplete();
+            services.AddServiceBricksComplete(Configuration);
         }
 
         public virtual void Configure(IApplicationBuilder app)
