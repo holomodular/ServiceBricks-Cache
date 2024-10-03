@@ -35,6 +35,7 @@ namespace ServiceBricks.Cache
         public static IServiceCollection AddServiceBricksCacheClient(this IServiceCollection services, IConfiguration configuration)
         {
             // AI: Add clients for the module for each DTO
+            services.AddScoped<IApiClient<CacheDataDto>, CacheDataApiClient>();
             services.AddScoped<ICacheDataApiClient, CacheDataApiClient>();
 
             return services;

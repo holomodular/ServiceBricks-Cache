@@ -11,13 +11,6 @@ namespace ServiceBricks.Cache.AzureDataTables
     public sealed class CacheAzureDataTablesModuleStartRule : BusinessRule
     {
         /// <summary>
-        /// Constructor.
-        /// </summary>
-        public CacheAzureDataTablesModuleStartRule()
-        {
-        }
-
-        /// <summary>
         /// Register the rule
         /// </summary>
         public static void Register(IBusinessRuleRegistry registry)

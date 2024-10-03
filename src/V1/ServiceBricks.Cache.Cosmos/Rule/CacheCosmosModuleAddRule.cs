@@ -11,13 +11,6 @@ namespace ServiceBricks.Cache.Cosmos
     public sealed class CacheCosmosModuleAddRule : BusinessRule
     {
         /// <summary>
-        /// Constructor.
-        /// </summary>
-        public CacheCosmosModuleAddRule()
-        {
-        }
-
-        /// <summary>
         /// Register the rule
         /// </summary>
         public static void Register(IBusinessRuleRegistry registry)

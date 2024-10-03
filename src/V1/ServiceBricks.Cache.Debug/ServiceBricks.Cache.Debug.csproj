@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Include="..\ServiceBricks.Cache\Api\CacheDataDto.cs" Link="CacheDataDto.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Dto\CacheDataDto.cs" Link="CacheDataDto.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Background\CacheExpirationTask.cs" Link="CacheExpirationTask.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Background\CacheExpirationTimer.cs" Link="CacheExpirationTimer.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Controllers\CacheDataApiController.cs" Link="CacheDataApiController.cs" />
@@ -19,11 +19,11 @@
 	  <Compile Include="..\ServiceBricks.Cache\Model\CacheConstants.cs" Link="CacheConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Model\CacheModule.cs" Link="CacheModule.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Rule\CacheModuleAddRule.cs" Link="CacheModuleAddRule.cs" />
-	  <Compile Include="..\ServiceBricks.Cache\Service\CacheDataApiClient.cs" Link="CacheDataApiClient.cs" />
+	  <Compile Include="..\ServiceBricks.Cache\Client\CacheDataApiClient.cs" Link="CacheDataApiClient.cs" />
 	  <Compile Include="..\ServiceBricks.Cache\Service\SingleServerProcessService.cs" Link="SingleServerProcessService.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks" Version="1.1.0-k" />
+		<PackageReference Include="ServiceBricks" Version="1.1.0-l" />
 	</ItemGroup>
 </Project>

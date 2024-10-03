@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceBricks.Cache.EntityFrameworkCore;
+using ServiceBricks.Storage.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.Cosmos
 {
@@ -25,7 +26,7 @@ namespace ServiceBricks.Cache.Cosmos
 
             // AI: Add module business rules
             CacheCosmosModuleAddRule.Register(BusinessRuleRegistry.Instance);
-            CacheCosmosModuleStartRule.Register(BusinessRuleRegistry.Instance);
+            EntityFrameworkCoreDatabaseEnsureCreatedRule<CacheCosmosModule, CacheCosmosContext>.Register(BusinessRuleRegistry.Instance);
             ModuleSetStartedRule<CacheCosmosModule>.Register(BusinessRuleRegistry.Instance);
 
             return services;

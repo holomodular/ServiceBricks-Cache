@@ -61,6 +61,7 @@ namespace ServiceBricks.Cache
             // AI: Configure all options for the module
 
             // AI: Add API Controllers for each DTO in the module
+            services.AddScoped<IApiController<CacheDataDto>, CacheDataApiController>();
             services.AddScoped<ICacheDataApiController, CacheDataApiController>();
 
             // AI: Add any miscellaneous services for the module
