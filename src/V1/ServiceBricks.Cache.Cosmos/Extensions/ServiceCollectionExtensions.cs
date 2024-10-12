@@ -26,8 +26,8 @@ namespace ServiceBricks.Cache.Cosmos
 
             // AI: Add module business rules
             CacheCosmosModuleAddRule.Register(BusinessRuleRegistry.Instance);
-            EntityFrameworkCoreDatabaseEnsureCreatedRule<CacheCosmosModule, CacheCosmosContext>.Register(BusinessRuleRegistry.Instance);
             ModuleSetStartedRule<CacheCosmosModule>.Register(BusinessRuleRegistry.Instance);
+            EntityFrameworkCoreDatabaseEnsureCreatedRule<CacheModule, CacheCosmosContext>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }

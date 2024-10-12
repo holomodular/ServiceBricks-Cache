@@ -6,5 +6,13 @@
     public partial class CacheModule : ServiceBricks.Module
     {
         public static CacheModule Instance = new CacheModule();
+
+        public CacheModule()
+        {
+            DataTransferObjects = new List<Type>()
+            {
+                typeof(CacheDataDto),
+            };
+        }
     }
 }

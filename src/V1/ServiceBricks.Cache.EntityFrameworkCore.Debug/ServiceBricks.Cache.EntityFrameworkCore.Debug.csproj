@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
@@ -20,6 +20,6 @@
 	  <ProjectReference Include="..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Storage.EntityFrameworkCore" Version="1.1.0-l" />
+		<PackageReference Include="ServiceBricks.Storage.EntityFrameworkCore" Version="1.1.0-m" />
 	</ItemGroup>
 </Project>

@@ -6,17 +6,25 @@ using ServiceBricks.Storage.AzureDataTables;
 namespace ServiceBricks.Cache.AzureDataTables
 {
     /// <summary>
-    /// This rule is executed when the ServiceBricks module is added.
+    /// This rule is executed when the ServiceBricks module is started.
     /// </summary>
     public sealed class CacheAzureDataTablesModuleStartRule : BusinessRule
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public CacheAzureDataTablesModuleStartRule()
+        {
+            Priority = PRIORITY_HIGH;
+        }
+
         /// <summary>
         /// Register the rule
         /// </summary>
         public static void Register(IBusinessRuleRegistry registry)
         {
             registry.Register(
-                typeof(ModuleStartEvent<CacheAzureDataTablesModule>),
+                typeof(ModuleStartEvent<CacheModule>),
                 typeof(CacheAzureDataTablesModuleStartRule));
         }
 
@@ -26,7 +34,7 @@ namespace ServiceBricks.Cache.AzureDataTables
         public static void UnRegister(IBusinessRuleRegistry registry)
         {
             registry.UnRegister(
-                typeof(ModuleStartEvent<CacheAzureDataTablesModule>),
+                typeof(ModuleStartEvent<CacheModule>),
                 typeof(CacheAzureDataTablesModuleStartRule));
         }
 
@@ -45,7 +53,7 @@ namespace ServiceBricks.Cache.AzureDataTables
                 response.AddMessage(ResponseMessage.CreateError(LocalizationResource.PARAMETER_MISSING, "context"));
                 return response;
             }
-            var e = context.Object as ModuleStartEvent<CacheAzureDataTablesModule>;
+            var e = context.Object as ModuleStartEvent<CacheModule>;
             if (e == null || e.DomainObject == null || e.ApplicationBuilder == null)
             {
                 response.AddMessage(ResponseMessage.CreateError(LocalizationResource.PARAMETER_MISSING, "context"));

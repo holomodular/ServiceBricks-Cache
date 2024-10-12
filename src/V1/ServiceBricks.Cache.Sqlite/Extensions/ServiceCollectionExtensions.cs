@@ -27,7 +27,7 @@ namespace ServiceBricks.Cache.Sqlite
             // AI: Add module business rules
             CacheSqliteModuleAddRule.Register(BusinessRuleRegistry.Instance);
             ModuleSetStartedRule<CacheSqliteModule>.Register(BusinessRuleRegistry.Instance);
-            SqliteDatabaseMigrationRule<CacheSqliteModule, CacheSqliteContext>.Register(BusinessRuleRegistry.Instance);
+            SqliteDatabaseMigrationRule<CacheModule, CacheSqliteContext>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }

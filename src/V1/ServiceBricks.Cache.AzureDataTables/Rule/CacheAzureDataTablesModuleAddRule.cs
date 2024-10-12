@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ServiceBricks.Storage.AzureDataTables;
 
 namespace ServiceBricks.Cache.AzureDataTables
 {
@@ -64,7 +65,7 @@ namespace ServiceBricks.Cache.AzureDataTables
 
             // AI: Register business rules for the module
             DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
-            DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
+            AzureDataTablesDomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
             ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
             CacheDataCreateRule.Register(BusinessRuleRegistry.Instance);
             DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "PartitionKey");

@@ -27,7 +27,7 @@ namespace ServiceBricks.Cache.Postgres
             // AI: Add module business rules
             CachePostgresModuleAddRule.Register(BusinessRuleRegistry.Instance);
             ModuleSetStartedRule<CachePostgresModule>.Register(BusinessRuleRegistry.Instance);
-            PostgresDatabaseMigrationRule<CachePostgresModule, CachePostgresContext>.Register(BusinessRuleRegistry.Instance);
+            PostgresDatabaseMigrationRule<CacheModule, CachePostgresContext>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }

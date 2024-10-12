@@ -27,7 +27,7 @@ namespace ServiceBricks.Cache.SqlServer
             // AI: Add module business rules
             CacheSqlServerModuleAddRule.Register(BusinessRuleRegistry.Instance);
             ModuleSetStartedRule<CacheSqlServerModule>.Register(BusinessRuleRegistry.Instance);
-            SqlServerDatabaseMigrationRule<CacheSqlServerModule, CacheSqlServerContext>.Register(BusinessRuleRegistry.Instance);
+            SqlServerDatabaseMigrationRule<CacheModule, CacheSqlServerContext>.Register(BusinessRuleRegistry.Instance);
 
             return services;
         }
