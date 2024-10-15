@@ -12,7 +12,7 @@ using ServiceBricks.Cache.Postgres;
 namespace ServiceBricks.Cache.Postgres.Migrations
 {
     [DbContext(typeof(CachePostgresContext))]
-    [Migration("20240913121242_CacheV1")]
+    [Migration("20241014170113_CacheV1")]
     partial class CacheV1
     {
         /// <inheritdoc />
@@ -21,7 +21,7 @@ namespace ServiceBricks.Cache.Postgres.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Cache")
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -47,7 +47,7 @@ namespace ServiceBricks.Cache.Postgres.Migrations
 
                     b.HasIndex("ExpirationDate");
 
-                    b.ToTable("CacheDatas", "Cache");
+                    b.ToTable("CacheData", "Cache");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,14 +10,14 @@ using ServiceBricks.Cache.Sqlite;
 namespace ServiceBricks.Cache.Sqlite.Migrations
 {
     [DbContext(typeof(CacheSqliteContext))]
-    [Migration("20240913121322_CacheV1")]
+    [Migration("20241014170151_CacheV1")]
     partial class CacheV1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
             modelBuilder.Entity("ServiceBricks.Cache.EntityFrameworkCore.CacheData", b =>
                 {
@@ -42,7 +42,7 @@ namespace ServiceBricks.Cache.Sqlite.Migrations
 
                     b.HasIndex("ExpirationDate");
 
-                    b.ToTable("CacheDatas");
+                    b.ToTable("CacheData");
                 });
 #pragma warning restore 612, 618
         }

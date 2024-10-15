@@ -47,7 +47,7 @@ namespace ServiceBricks.Cache.SqlServer
         /// <summary>
         /// Cache Data.
         /// </summary>
-        public virtual DbSet<CacheData> CacheDatas { get; set; }
+        public virtual DbSet<CacheData> CacheData { get; set; }
 
         /// <summary>
         /// OnModelCreating.

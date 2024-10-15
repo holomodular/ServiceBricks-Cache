@@ -12,7 +12,7 @@ using ServiceBricks.Cache.SqlServer;
 namespace ServiceBricks.Cache.SqlServer.Migrations
 {
     [DbContext(typeof(CacheSqlServerContext))]
-    [Migration("20240913121352_CacheV1")]
+    [Migration("20241014170222_CacheV1")]
     partial class CacheV1
     {
         /// <inheritdoc />
@@ -21,7 +21,7 @@ namespace ServiceBricks.Cache.SqlServer.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Cache")
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -47,7 +47,7 @@ namespace ServiceBricks.Cache.SqlServer.Migrations
 
                     b.HasIndex("ExpirationDate");
 
-                    b.ToTable("CacheDatas", "Cache");
+                    b.ToTable("CacheData", "Cache");
                 });
 #pragma warning restore 612, 618
         }

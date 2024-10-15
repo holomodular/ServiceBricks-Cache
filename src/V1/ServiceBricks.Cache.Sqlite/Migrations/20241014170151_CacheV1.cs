@@ -11,7 +11,7 @@ namespace ServiceBricks.Cache.Sqlite.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CacheDatas",
+                name: "CacheData",
                 columns: table => new
                 {
                     CacheKey = table.Column<string>(type: "TEXT", nullable: false),
@@ -22,12 +22,12 @@ namespace ServiceBricks.Cache.Sqlite.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CacheDatas", x => x.CacheKey);
+                    table.PrimaryKey("PK_CacheData", x => x.CacheKey);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CacheDatas_ExpirationDate",
-                table: "CacheDatas",
+                name: "IX_CacheData_ExpirationDate",
+                table: "CacheData",
                 column: "ExpirationDate");
         }
 
@@ -35,7 +35,7 @@ namespace ServiceBricks.Cache.Sqlite.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CacheDatas");
+                name: "CacheData");
         }
     }
 }

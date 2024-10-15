@@ -8,8 +8,8 @@
 
 	<ItemGroup>
 	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
-	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Migrations\20240913121322_CacheV1.cs" Link="20240913121322_CacheV1.cs" />
-	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Migrations\20240913121322_CacheV1.Designer.cs" Link="20240913121322_CacheV1.Designer.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Migrations\20241014170151_CacheV1.cs" Link="20241014170151_CacheV1.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Migrations\20241014170151_CacheV1.Designer.cs" Link="20241014170151_CacheV1.Designer.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Migrations\CacheSqliteContextModelSnapshot.cs" Link="CacheSqliteContextModelSnapshot.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Model\CacheSqliteConstants.cs" Link="CacheSqliteConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Sqlite\Model\CacheSqliteContext.cs" Link="CacheSqliteContext.cs" />

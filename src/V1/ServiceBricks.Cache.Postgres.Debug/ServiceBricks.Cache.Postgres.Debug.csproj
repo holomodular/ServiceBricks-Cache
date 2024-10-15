@@ -8,8 +8,8 @@
 
 	<ItemGroup>
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Extensions\ServiceCollectionExtensions.cs" Link="ServiceCollectionExtensions.cs" />
-	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\20240913121242_CacheV1.cs" Link="20240913121242_CacheV1.cs" />
-	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\20240913121242_CacheV1.Designer.cs" Link="20240913121242_CacheV1.Designer.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\20241014170113_CacheV1.cs" Link="20241014170113_CacheV1.cs" />
+	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\20241014170113_CacheV1.Designer.cs" Link="20241014170113_CacheV1.Designer.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Migrations\CachePostgresContextModelSnapshot.cs" Link="CachePostgresContextModelSnapshot.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Model\CachePostgresConstants.cs" Link="CachePostgresConstants.cs" />
 	  <Compile Include="..\ServiceBricks.Cache.Postgres\Model\CachePostgresContext.cs" Link="CachePostgresContext.cs" />

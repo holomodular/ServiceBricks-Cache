@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,7 +15,7 @@ namespace ServiceBricks.Cache.SqlServer.Migrations
                 name: "Cache");
 
             migrationBuilder.CreateTable(
-                name: "CacheDatas",
+                name: "CacheData",
                 schema: "Cache",
                 columns: table => new
                 {
@@ -26,13 +27,13 @@ namespace ServiceBricks.Cache.SqlServer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CacheDatas", x => x.CacheKey);
+                    table.PrimaryKey("PK_CacheData", x => x.CacheKey);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CacheDatas_ExpirationDate",
+                name: "IX_CacheData_ExpirationDate",
                 schema: "Cache",
-                table: "CacheDatas",
+                table: "CacheData",
                 column: "ExpirationDate");
         }
 
@@ -40,7 +41,7 @@ namespace ServiceBricks.Cache.SqlServer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CacheDatas",
+                name: "CacheData",
                 schema: "Cache");
         }
     }
