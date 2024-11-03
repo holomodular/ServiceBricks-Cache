@@ -40,8 +40,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\ServiceBricks.Cache.Postgres.Debug\ServiceBricks.Cache.Postgres.Debug.csproj" />
 	  <ProjectReference Include="..\ServiceBricks.Cache.XunitNet6\ServiceBricks.Cache.XunitNet6.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.Postgres\ServiceBricks.Cache.Postgres.csproj" />
 	</ItemGroup>
 
 </Project>

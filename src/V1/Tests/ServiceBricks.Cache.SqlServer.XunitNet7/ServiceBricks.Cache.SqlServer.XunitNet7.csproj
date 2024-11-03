@@ -40,8 +40,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\ServiceBricks.Cache.SqlServer.Debug\ServiceBricks.Cache.SqlServer.Debug.csproj" />
 	  <ProjectReference Include="..\ServiceBricks.Cache.XunitNet7\ServiceBricks.Cache.XunitNet7.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.SqlServer\ServiceBricks.Cache.SqlServer.csproj" />
 	</ItemGroup>
 
 </Project>

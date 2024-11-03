@@ -15,10 +15,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Xunit" Version="1.1.0-m" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\..\ServiceBricks.Cache.Debug\ServiceBricks.Cache.Debug.csproj" />
+		<PackageReference Include="ServiceBricks.Xunit" Version="1.1.0-o" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
@@ -37,6 +34,11 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ServiceBricks.Cache.Microservice\ServiceBricks.Cache.Microservice.csproj" />
+	  <ProjectReference Include="..\..\ServiceBricks.Cache\ServiceBricks.Cache.csproj" />
 	</ItemGroup>
 	
 </Project>

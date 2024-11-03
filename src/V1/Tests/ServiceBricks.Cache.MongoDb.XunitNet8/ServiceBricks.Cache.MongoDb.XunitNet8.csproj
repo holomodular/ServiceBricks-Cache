@@ -40,8 +40,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\ServiceBricks.Cache.MongoDb.Debug\ServiceBricks.Cache.MongoDb.Debug.csproj" />
 	  <ProjectReference Include="..\ServiceBricks.Cache.XunitNet8\ServiceBricks.Cache.XunitNet8.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.MongoDb\ServiceBricks.Cache.MongoDb.csproj" />
 	</ItemGroup>
 
 </Project>

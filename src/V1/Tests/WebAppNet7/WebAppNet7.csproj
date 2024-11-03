@@ -16,7 +16,7 @@
   <ItemGroup>
 	  <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.1.0" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.20" />
-	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,14 +34,14 @@
     <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\ServiceBricks.Cache.AzureDataTables.Debug\ServiceBricks.Cache.AzureDataTables.Debug.csproj" />
-    <ProjectReference Include="..\..\ServiceBricks.Cache.Cosmos.Debug\ServiceBricks.Cache.Cosmos.Debug.csproj" />
-    <ProjectReference Include="..\..\ServiceBricks.Cache.InMemory.Debug\ServiceBricks.Cache.InMemory.Debug.csproj" />
-    <ProjectReference Include="..\..\ServiceBricks.Cache.MongoDb.Debug\ServiceBricks.Cache.MongoDb.Debug.csproj" />
-    <ProjectReference Include="..\..\ServiceBricks.Cache.Postgres.Debug\ServiceBricks.Cache.Postgres.Debug.csproj" />
-    <ProjectReference Include="..\..\ServiceBricks.Cache.Sqlite.Debug\ServiceBricks.Cache.Sqlite.Debug.csproj" />
-    <ProjectReference Include="..\..\ServiceBricks.Cache.SqlServer.Debug\ServiceBricks.Cache.SqlServer.Debug.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\ServiceBricks.Cache.AzureDataTables\ServiceBricks.Cache.AzureDataTables.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.Cosmos\ServiceBricks.Cache.Cosmos.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.InMemory\ServiceBricks.Cache.InMemory.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.MongoDb\ServiceBricks.Cache.MongoDb.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.Postgres\ServiceBricks.Cache.Postgres.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.Sqlite\ServiceBricks.Cache.Sqlite.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.SqlServer\ServiceBricks.Cache.SqlServer.csproj" />
+	</ItemGroup>
 
 </Project>

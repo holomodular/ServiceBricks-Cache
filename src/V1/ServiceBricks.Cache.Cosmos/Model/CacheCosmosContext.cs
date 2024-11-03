@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using ServiceBricks.Cache.EntityFrameworkCore;
 
 namespace ServiceBricks.Cache.Cosmos
@@ -23,7 +22,7 @@ namespace ServiceBricks.Cache.Cosmos
         /// <summary>
         /// Cache Data.
         /// </summary>
-        public virtual DbSet<CacheData> CacheDatas { get; set; }
+        public virtual DbSet<CacheData> CacheData { get; set; }
 
         /// <summary>
         /// OnModelCreating.

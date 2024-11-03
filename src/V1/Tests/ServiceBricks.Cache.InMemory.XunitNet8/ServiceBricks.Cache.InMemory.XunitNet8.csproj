@@ -42,8 +42,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\ServiceBricks.Cache.InMemory.Debug\ServiceBricks.Cache.InMemory.Debug.csproj" />
 	  <ProjectReference Include="..\ServiceBricks.Cache.XunitNet8\ServiceBricks.Cache.XunitNet8.csproj" />
+		<ProjectReference Include="..\..\ServiceBricks.Cache.InMemory\ServiceBricks.Cache.InMemory.csproj" />
 	</ItemGroup>
 
 </Project>
