@@ -14,9 +14,8 @@
     <Compile Include="..\TestFiles\CacheDataTestManager.cs" Link="CacheDataTestManager.cs" />
   </ItemGroup>
 
-
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Xunit" Version="1.1.0-o" />
+		<PackageReference Include="ServiceBricks.Xunit" Version="1.1.0-p" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
