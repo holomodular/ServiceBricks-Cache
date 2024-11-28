@@ -15,7 +15,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ServiceBricks.Xunit" Version="1.1.0-p" />
+		<PackageReference Include="ServiceBricks.Xunit" Version="1.1.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
