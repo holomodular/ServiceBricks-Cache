@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceBricks.Storage.MongoDb;
 
 namespace ServiceBricks.Cache.MongoDb
 {
@@ -24,6 +25,7 @@ namespace ServiceBricks.Cache.MongoDb
 
             // AI: Add module business rules
             CacheMongoDbModuleAddRule.Register(BusinessRuleRegistry.Instance);
+            MongoDbGuidSerializerStandardRule.Register(BusinessRuleRegistry.Instance);
             ModuleSetStartedRule<CacheMongoDbModule>.Register(BusinessRuleRegistry.Instance);
 
             return services;

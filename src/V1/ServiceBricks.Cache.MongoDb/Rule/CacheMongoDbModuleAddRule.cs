@@ -56,8 +56,6 @@ namespace ServiceBricks.Cache.MongoDb
             var services = e.ServiceCollection;
             //var configuration = e.Configuration;
 
-            BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
-
             // AI: Add the storage services for the module for each domain object
             services.AddScoped<IStorageRepository<CacheData>, CacheStorageRepository<CacheData>>();
 
