@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServiceBricks.Cache.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace ServiceBricks.Cache.Cosmos
 {
@@ -34,9 +35,24 @@ namespace ServiceBricks.Cache.Cosmos
 
             // AI: Create the model for each table
             builder.Entity<CacheData>().HasKey(key => key.CacheKey);
-            builder.Entity<CacheData>().HasPartitionKey(key => key.CacheKey);
-            builder.Entity<CacheData>().HasIndex(key => new { key.ExpirationDate }); // For background process
             builder.Entity<CacheData>().ToContainer(CacheCosmosConstants.GetContainerName(nameof(CacheData)));
+#if NET9_0
+#else
+            builder.Entity<CacheData>().HasPartitionKey(key => key.CacheKey);
+#endif
+        }
+
+        /// <summary>
+        /// OnConfiguring
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+#if NET9_0
+            optionsBuilder.ConfigureWarnings(w => w.Ignore(CosmosEventId.SyncNotSupported));
+#endif
+
+            base.OnConfiguring(optionsBuilder);
         }
 
         /// <summary>

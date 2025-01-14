@@ -69,6 +69,7 @@ namespace ServiceBricks.Cache.AzureDataTables
             ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
             CacheDataCreateRule.Register(BusinessRuleRegistry.Instance);
             DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "PartitionKey");
+            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "CacheKey", "PartitionKey");
 
             return response;
         }

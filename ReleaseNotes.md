@@ -1,3 +1,21 @@
+# 1.2.0
+- Upgrade ServiceBricks Version and all related packages to latest version
+- Fix for AzureDataTables to associate queries for CacheKey to PartitionKey
+- Fix for Cosmos to remove indexes from modelbuilder
+- Fix for Cosmos to remove HasPartition from modelbuilder for .NET 9 using compiler directive
+- Fix for MongoDb to associate queries for CacheKey to Id and mappingprofile changes
+- Fix for MongoDb to change Id to Bson.string type and store CacheKey instead of an objectid
+- Remove resources folder from webapp projects
+
+# 1.1.3
+- Upgrade ServiceBricks Version
+
+# 1.1.2
+- Upgrade ServiceBricks Version
+
+# 1.1.1
+- Upgrade ServiceBricks Version
+
 # 1.1.0
 - Official Production Release
 
