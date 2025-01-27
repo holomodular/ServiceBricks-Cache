@@ -11,6 +11,7 @@
 This repository contains a cache microservice built using the ServiceBricks foundation.
 The cache microservice exposes a key/value pair object that can be used for simple data storage.
 It also provides a background task for an expiration process to delete cache items once their expiration date occurs.
+There are additional classes added for using this microservice as a semaphore, exposing a locking mechanism that can be used by multiple servers when needing to access a shared resource.
 
 ## Data Transfer Objects
 
@@ -21,33 +22,29 @@ Key and Value pair storage object along with an expiration date to denote when i
 
     public partial class CacheDataDto : DataTransferObject
     {
-        public string Key { get; set; }
         public DateTimeOffset CreateDate { get; set; }
         public DateTimeOffset UpdateDate { get; set; }
+        public string CacheKey { get; set; }
+        public string CacheValue { get; set; }
         public DateTimeOffset? ExpirationDate { get; set; }
-        public string Value { get; set; }
+
     }
 
 ```
-
-#### Business Rules
-
-* DomainCreateUpdateRule - CreateDate and UpdateDate property
-* DateTimeOffsetRule - ExpirationDate property
-* ApiConcurrencyByUpdateRule - UpdateDate property
 
 
 ## Background Tasks and Timers
 
 ### CacheExpirationTimer class
-This background timer runs by default every 30 minutes, with an initial delay of 30 minutes. Executes the CacheExpirationTask.
+This background timer runs by default every 2500 milliseconds, with an initial delay of 1 second. It executes the CacheExpirationTask.
+The interval can be changed with the SemaphoreOptions, along with other options used for locking shared resources.
 
-[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/BackgroundTask/CacheExpirationTimer.cs)
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Background/CacheExpirationTimer.cs)
 
 ### CacheExpirationTask class
-This background task queries for all CacheData whos expiration date is less than now, then deletes those records.
+This background task queries for all CacheData records with an expiration date is less than now, then deletes those records.
 
-[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/BackgroundTask/CacheExpirationTask.cs)
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Background/CacheExpirationTask.cs)
 
 ## Events
 None
@@ -58,19 +55,44 @@ None
 ## Service Bus
 None
 
-## Additional
+## Additional Services
 
-### SingleServerProcessService class
-This class was initially designed to be used as a semaphore when deploying load-balanced applications so that only one server would process a background task at a time.
-This is because not all storage providers provide a way to lock the underlying data store and use it as a queue, so that multiple, simultaneous connections do not return the same records.
+### SemaphoreService
+This provides a locking mechanism for shared resources in the infrastructure. Using the CacheData object, multiple concurrent services try creating the same key/record in the backing storage, the one that wins pulls records, then releases/deletes the record. Processes will delay and retry creating the lock until it obtains it or times out. See the SemaphoreOptions for the full list of values used.
 
-The implementation currently uses the IApiService which would require the Cache service to be hosted along with the microservice that uses this.
-It should be changed to support IApiClient, so that other microservices can make a client call instead of hosting the complete service. **Enhancement**
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SemaphoreService.cs)
+
+### SingleServerProcessService
+This interface stores a key in cache used for syncing across load-balanced applications so that only one server would process records at a time (see SingleWorkService). It provides a heartbeat, so that other instances will pickup and start processing, should the main running server be shut down.
 
 [View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SingleServerProcessService.cs)
 
+### SingleWorkService class
+This abstract class implements the WorkService and the ISingleServerProcessService to provide a single ordered work queue across multi-application instances.
+
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SingleWorkService.cs)
+
+### LockedWorkService class
+This abstract class provides a way to lock the underlying data store and use it as a queue, so that multiple, simultaneous running workers do not return the same records. While the APIConcurrrency rule provides some protection, this class will provide the full solution.
+
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/LockedWorkService.cs)
+
 ## Application Settings
-None
+
+```csharp
+{
+    "ServiceBricks":{
+	"Cache":{
+	    "Semaphore":{
+		"DelayMilliseconds": 300,
+		"CancellationMilliseconds": 10000,
+		"OrphanExpirationMilliseconds": 5000,
+		"ExpirationTimerIntervalMilliseconds": 2500
+	    }
+	}
+    }
+}
+```
 
 # About ServiceBricks
 

@@ -4,7 +4,7 @@ using System.Net;
 namespace ServiceBricks.Cache
 {
     /// <summary>
-    /// This will allow only one server to process a task at a time as the number of application instances are increased.
+    /// This will allow only one server to process at a time as the number of application instances are increased or decreased.
     /// </summary>
     public partial class SingleServerProcessService : ISingleServerProcessService
     {

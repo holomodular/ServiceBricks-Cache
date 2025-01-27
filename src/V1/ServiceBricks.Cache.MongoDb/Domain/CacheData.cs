@@ -11,15 +11,10 @@ namespace ServiceBricks.Cache.MongoDb
     public partial class CacheData : MongoDbDomainObject<CacheData>, IDpCreateDate, IDpUpdateDate
     {
         /// <summary>
-        /// Internal Primary Key.
+        /// The cache key.
         /// </summary>
         [BsonId]
         [BsonRepresentation(BsonType.String)]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// The cache key.
-        /// </summary>
         public string CacheKey { get; set; }
 
         /// <summary>
@@ -49,7 +44,7 @@ namespace ServiceBricks.Cache.MongoDb
         /// <returns></returns>
         public override Expression<Func<CacheData, bool>> DomainGetItemFilter(CacheData obj)
         {
-            return x => x.Id == obj.Id;
+            return x => x.CacheKey == obj.CacheKey;
         }
     }
 }

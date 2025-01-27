@@ -1,3 +1,8 @@
+v1.3.0-a prerelease
+- Update all nuget package references
+- Add new LockedWorkServices and SingleWorkService to support new WorkService in base library
+- Add new SemaphoreService to support shared resource locking
+
 # 1.2.0
 - Upgrade ServiceBricks Version and all related packages to latest version
 - Fix for AzureDataTables to associate queries for CacheKey to PartitionKey

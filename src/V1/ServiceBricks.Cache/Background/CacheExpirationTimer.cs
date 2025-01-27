@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace ServiceBricks.Cache
 {
@@ -8,6 +9,8 @@ namespace ServiceBricks.Cache
     /// </summary>
     public partial class CacheExpirationTimer : TaskTimerHostedService<CacheExpirationTask.Detail, CacheExpirationTask.Worker>
     {
+        protected readonly int _interval;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -15,8 +18,10 @@ namespace ServiceBricks.Cache
         /// <param name="logger"></param>
         public CacheExpirationTimer(
             IServiceProvider serviceProvider,
-            ILoggerFactory logger) : base(serviceProvider, logger)
+            ILoggerFactory logger,
+            IOptions<SemaphoreOptions> options) : base(serviceProvider, logger)
         {
+            _interval = options.Value.ExpirationTimerIntervalMilliseconds;
         }
 
         /// <summary>
@@ -24,7 +29,7 @@ namespace ServiceBricks.Cache
         /// </summary>
         public override TimeSpan TimerTickInterval
         {
-            get { return TimeSpan.FromMinutes(5); }
+            get { return TimeSpan.FromMilliseconds(_interval); }
         }
 
         /// <summary>

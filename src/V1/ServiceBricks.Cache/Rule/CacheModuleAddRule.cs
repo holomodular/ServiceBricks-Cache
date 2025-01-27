@@ -51,6 +51,7 @@ namespace ServiceBricks.Cache
 
             // AI: Perform logic
             var services = e.ServiceCollection;
+            var config = e.Configuration;
 
             // AI: Add hosted services for the module
             services.AddHostedService<CacheExpirationTimer>();
@@ -59,6 +60,7 @@ namespace ServiceBricks.Cache
             services.AddScoped<CacheExpirationTask.Worker>();
 
             // AI: Configure all options for the module
+            services.Configure<SemaphoreOptions>(config.GetSection(CacheConstants.APPSETTING_SEMAPHORE_OPTIONS));
 
             // AI: Add API Controllers for each DTO in the module
             services.AddScoped<IApiController<CacheDataDto>, CacheDataApiController>();
@@ -66,6 +68,7 @@ namespace ServiceBricks.Cache
 
             // AI: Add any miscellaneous services for the module
             services.AddScoped<ISingleServerProcessService, SingleServerProcessService>();
+            services.AddScoped<ISemaphoreService, SemaphoreService>();
 
             // AI: Register business rules for the module
 

@@ -67,7 +67,7 @@ namespace ServiceBricks.Cache.MongoDb
             DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
             DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));
             ApiConcurrencyByUpdateDateRule<CacheData, CacheDataDto>.Register(BusinessRuleRegistry.Instance);
-            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "Id");
+            DomainQueryPropertyRenameRule<CacheData>.Register(BusinessRuleRegistry.Instance, "StorageKey", "CacheKey");
 
             return response;
         }

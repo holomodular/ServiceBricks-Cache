@@ -25,7 +25,7 @@ namespace ServiceBricks.Cache
         }
 
         /// <summary>
-        /// The worker class performs the work detail. It should also be registered as a scoped service in the DI container in ServiceCollectionExtensions.
+        /// The worker class performs the work detail. It should also be registered as a scoped service
         /// </summary>
         public class Worker : ITaskWork<Detail, Worker>
         {

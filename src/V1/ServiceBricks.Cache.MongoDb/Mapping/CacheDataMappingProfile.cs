@@ -15,11 +15,10 @@ namespace ServiceBricks.Cache.MongoDb
             // AI: Map the CacheDataDto to the CacheData
             CreateMap<CacheDataDto, CacheData>()
                 .ForMember(x => x.CreateDate, y => y.Ignore())
-                .ForMember(x => x.Id, y => y.MapFrom(z => string.IsNullOrEmpty(z.CacheKey) ? z.StorageKey : z.CacheKey))
                 .ForMember(x => x.CacheKey, y => y.MapFrom(z => string.IsNullOrEmpty(z.CacheKey) ? z.StorageKey : z.CacheKey));
 
             CreateMap<CacheData, CacheDataDto>()
-                .ForMember(x => x.StorageKey, y => y.MapFrom(z => z.Id));
+                .ForMember(x => x.StorageKey, y => y.MapFrom(z => z.CacheKey));
         }
     }
 }
