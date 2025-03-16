@@ -24,6 +24,7 @@ namespace ServiceBricks.Cache.AzureDataTables
             ConnectionString = configuration.GetAzureDataTablesConnectionString(
                 CacheAzureDataTablesConstants.APPSETTING_CONNECTION_STRING);
             TableName = CacheAzureDataTablesConstants.GetTableName(typeof(TDomain).Name);
+            LogExceptions = false;
         }
     }
 }

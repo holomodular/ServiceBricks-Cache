@@ -20,6 +20,7 @@ namespace ServiceBricks.Cache.Sqlite
         {
             Context = context;
             DbSet = context.Set<TDomain>();
+            LogExceptions = false;
         }
     }
 }

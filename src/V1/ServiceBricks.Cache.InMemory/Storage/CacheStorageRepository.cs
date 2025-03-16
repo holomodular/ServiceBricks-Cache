@@ -20,6 +20,7 @@ namespace ServiceBricks.Cache.InMemory
         {
             Context = context;
             DbSet = context.Set<TDomain>();
+            LogExceptions = false;
         }
     }
 }

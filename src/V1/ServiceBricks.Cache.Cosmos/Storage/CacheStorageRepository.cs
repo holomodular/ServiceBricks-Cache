@@ -20,6 +20,7 @@ namespace ServiceBricks.Cache.Cosmos
         {
             Context = context;
             DbSet = context.Set<TDomain>();
+            LogExceptions = false;
         }
     }
 }

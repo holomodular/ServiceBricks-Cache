@@ -9,7 +9,7 @@ namespace ServiceBricks.Cache
     /// </summary>
     public partial class CacheExpirationTimer : TaskTimerHostedService<CacheExpirationTask.Detail, CacheExpirationTask.Worker>
     {
-        protected readonly int _interval;
+        private SemaphoreOptions _semaphoreOptions;
 
         /// <summary>
         /// Constructor.
@@ -21,23 +21,9 @@ namespace ServiceBricks.Cache
             ILoggerFactory logger,
             IOptions<SemaphoreOptions> options) : base(serviceProvider, logger)
         {
-            _interval = options.Value.ExpirationTimerIntervalMilliseconds;
-        }
-
-        /// <summary>
-        /// The interval at which the timer will tick.
-        /// </summary>
-        public override TimeSpan TimerTickInterval
-        {
-            get { return TimeSpan.FromMilliseconds(_interval); }
-        }
-
-        /// <summary>
-        /// The initial delay before the timer will tick.
-        /// </summary>
-        public override TimeSpan TimerDueTime
-        {
-            get { return TimeSpan.FromSeconds(1); }
+            _semaphoreOptions = options.Value;
+            TimerTickInterval = TimeSpan.FromMilliseconds(_semaphoreOptions.ExpirationTimerIntervalMilliseconds);
+            TimerDueTime = TimeSpan.FromMilliseconds(_semaphoreOptions.ExpirationTimerDueMilliseconds);
         }
 
         /// <summary>

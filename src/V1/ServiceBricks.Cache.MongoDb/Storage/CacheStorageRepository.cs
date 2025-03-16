@@ -26,6 +26,7 @@ namespace ServiceBricks.Cache.MongoDb
             DatabaseName = configuration.GetMongoDbDatabase(
                 CacheMongoDbConstants.APPSETTING_DATABASE);
             CollectionName = CacheMongoDbConstants.GetCollectionName(typeof(TDomain).Name);
+            LogExceptions = false;
         }
     }
 }

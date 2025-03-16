@@ -1,4 +1,8 @@
-v1.3.0-a prerelease
+# 1.3.0-c prerelease
+- Update all nuget package references
+- Minor changes
+
+# 1.3.0-a prerelease
 - Update all nuget package references
 - Add new LockedWorkServices and SingleWorkService to support new WorkService in base library
 - Add new SemaphoreService to support shared resource locking

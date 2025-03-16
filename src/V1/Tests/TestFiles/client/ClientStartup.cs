@@ -17,7 +17,6 @@ namespace ServiceBricks.Cache.Client.Xunit
             services.AddSingleton(Configuration);
             services.AddServiceBricks(Configuration);
             services.AddServiceBricksCacheClient(Configuration);
-
             // Remove all background tasks/timers for unit testing
 
             // Register TestManagers
