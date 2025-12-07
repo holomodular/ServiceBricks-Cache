@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace ServiceBricks.Cache.MongoDb
+﻿namespace ServiceBricks.Cache.MongoDb
 {
     /// <summary>
     /// This is a REST API service for the CacheData domain object.

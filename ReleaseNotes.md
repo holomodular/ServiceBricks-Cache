@@ -1,3 +1,10 @@
+# 1.4.0-a
+- Net10 support and update nuget packages
+- Upgrade mapping profiles
+- ExpirationOptions to enable/disable timer and intervals
+- SemaphoreOptions for locking intervals
+- Cosmos context changes
+
 # 1.3.0
 - Rollup quarterly release. See previous release notes.
 

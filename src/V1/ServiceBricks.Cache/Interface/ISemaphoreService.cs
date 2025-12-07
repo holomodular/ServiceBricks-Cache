@@ -31,10 +31,10 @@
         /// </summary>
         /// <param name="lockKey"></param>
         /// <param name="lockData"></param>
-        /// <param name="expiration"></param>
+        /// <param name="timeoutMilliseconds"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        bool AcquireLock(string lockKey, string lockData, DateTimeOffset expiration, CancellationToken cancellationToken);
+        bool AcquireLock(string lockKey, string lockData, int timeoutMilliseconds, CancellationToken cancellationToken);
 
         /// <summary>
         /// Acquire a lock
@@ -62,10 +62,10 @@
         /// </summary>
         /// <param name="lockKey"></param>
         /// <param name="lockData"></param>
-        /// <param name="expiration"></param>
+        /// <param name="timeoutMilliseconds"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<bool> AcquireLockAsync(string lockKey, string lockData, DateTimeOffset expiration, CancellationToken cancellationToken);
+        Task<bool> AcquireLockAsync(string lockKey, string lockData, int timeoutMilliseconds, CancellationToken cancellationToken);
 
         /// <summary>
         /// Release a lock

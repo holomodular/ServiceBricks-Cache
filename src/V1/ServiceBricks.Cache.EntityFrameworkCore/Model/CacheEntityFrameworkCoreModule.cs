@@ -14,10 +14,6 @@ namespace ServiceBricks.Cache.EntityFrameworkCore
         /// </summary>
         public CacheEntityFrameworkCoreModule()
         {
-            AutomapperAssemblies = new List<Assembly>()
-            {
-                typeof(CacheEntityFrameworkCoreModule).Assembly
-            };
         }
     }
 }

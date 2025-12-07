@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-
+﻿using Microsoft.Azure.Amqp.Framing;
 using ServiceBricks.Storage.AzureDataTables;
 
 namespace ServiceBricks.Cache.AzureDataTables
@@ -7,24 +6,46 @@ namespace ServiceBricks.Cache.AzureDataTables
     /// <summary>
     /// This is an mapping profile for the CacheData domain object.
     /// </summary>
-    public partial class CacheDataMappingProfile : Profile
+    public partial class CacheDataMappingProfile
     {
         /// <summary>
-        /// Constructor.
+        /// Register the mapping
         /// </summary>
-        public CacheDataMappingProfile()
+        public static void Register(IMapperRegistry registry)
         {
-            // AI: Create a mapping profile for CacheDataDto and CacheData.
-            CreateMap<CacheDataDto, CacheData>()
-                .ForMember(x => x.CreateDate, y => y.Ignore())
-                .ForMember(x => x.CacheKey, y => y.MapFrom(z => string.IsNullOrEmpty(z.CacheKey) ? z.StorageKey : z.CacheKey))
-                .ForMember(x => x.PartitionKey, y => y.MapFrom<PartitionKeyResolver>())
-                .ForMember(x => x.RowKey, y => y.MapFrom<RowKeyResolver>())
-                .ForMember(x => x.ETag, y => y.Ignore())
-                .ForMember(x => x.Timestamp, y => y.Ignore());
+            registry.Register<CacheData, CacheDataDto>(
+                (s, d) =>
+                {
+                    d.CacheKey = s.CacheKey;
+                    d.CacheValue = s.CacheValue;
+                    d.CreateDate = s.CreateDate;
+                    d.ExpirationDate = s.ExpirationDate;
+                    d.StorageKey = s.PartitionKey;
+                    d.UpdateDate = s.UpdateDate;
+                });
 
-            CreateMap<CacheData, CacheDataDto>()
-                .ForMember(x => x.StorageKey, y => y.MapFrom(z => z.CacheKey));
+            registry.Register<CacheDataDto, CacheData>(
+                (s, d) =>
+                {
+                    if (string.IsNullOrEmpty(s.CacheKey))
+                    {
+                        d.CacheKey = s.StorageKey;
+                        d.PartitionKey = s.StorageKey;
+                    }
+                    else
+                    {
+                        d.CacheKey = s.CacheKey;
+                        d.PartitionKey = s.CacheKey;
+                    }
+                    d.CacheValue = s.CacheValue;
+                    //d.CreateDate ignored
+                    //d.ETag ignored
+                    d.ExpirationDate = s.ExpirationDate;
+
+                    d.RowKey = string.Empty;
+                    //d.Timestamp ignored
+                    d.UpdateDate = s.UpdateDate;
+                });
         }
     }
 }

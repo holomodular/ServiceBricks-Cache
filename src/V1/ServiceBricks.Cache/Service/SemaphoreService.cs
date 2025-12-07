@@ -32,7 +32,7 @@ namespace ServiceBricks.Cache
             return AcquireLock(
                 lockKey,
                 null,
-                DateTimeOffset.UtcNow.AddMilliseconds(_semaphoreOptions.OrphanExpirationMilliseconds),
+                _semaphoreOptions.OrphanTimeoutMilliseconds,
                 cts.Token);
         }
 
@@ -48,7 +48,7 @@ namespace ServiceBricks.Cache
             return AcquireLock(
                 lockKey,
                 null,
-                DateTimeOffset.UtcNow.AddMilliseconds(_semaphoreOptions.OrphanExpirationMilliseconds),
+                _semaphoreOptions.OrphanTimeoutMilliseconds,
                 cts.Token);
         }
 
@@ -63,7 +63,7 @@ namespace ServiceBricks.Cache
             return AcquireLock(
                 lockKey,
                 null,
-                DateTimeOffset.UtcNow.AddMilliseconds(_semaphoreOptions.OrphanExpirationMilliseconds),
+                _semaphoreOptions.OrphanTimeoutMilliseconds,
                 cts.Token);
         }
 
@@ -74,7 +74,7 @@ namespace ServiceBricks.Cache
         /// <param name="expiration"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public virtual bool AcquireLock(string lockKey, string lockData, DateTimeOffset expiration, CancellationToken cancellationToken)
+        public virtual bool AcquireLock(string lockKey, string lockData, int timeoutMilliseconds, CancellationToken cancellationToken)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace ServiceBricks.Cache
                     {
                         CacheKey = lockKey,
                         CacheValue = lockData,
-                        ExpirationDate = expiration
+                        ExpirationDate = DateTimeOffset.UtcNow.AddMilliseconds(timeoutMilliseconds)
                     });
                     if (respCreate.Success)
                         return true;
@@ -113,7 +113,7 @@ namespace ServiceBricks.Cache
             return await AcquireLockAsync(
                 lockKey,
                 null,
-                DateTimeOffset.UtcNow.AddMilliseconds(_semaphoreOptions.OrphanExpirationMilliseconds),
+                _semaphoreOptions.OrphanTimeoutMilliseconds,
                 cts.Token);
         }
 
@@ -129,7 +129,7 @@ namespace ServiceBricks.Cache
             return await AcquireLockAsync(
                 lockKey,
                 null,
-                DateTimeOffset.UtcNow.AddMilliseconds(_semaphoreOptions.OrphanExpirationMilliseconds),
+                _semaphoreOptions.OrphanTimeoutMilliseconds,
                 cts.Token);
         }
 
@@ -144,7 +144,7 @@ namespace ServiceBricks.Cache
             return await AcquireLockAsync(
                 lockKey,
                 null,
-                DateTimeOffset.UtcNow.AddMilliseconds(_semaphoreOptions.OrphanExpirationMilliseconds),
+                _semaphoreOptions.OrphanTimeoutMilliseconds,
                 cts.Token);
         }
 
@@ -153,10 +153,10 @@ namespace ServiceBricks.Cache
         /// </summary>
         /// <param name="lockKey"></param>
         /// <param name="lockData"></param>
-        /// <param name="expiration"></param>
+        /// <param name="timeoutMilliseconds"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public virtual async Task<bool> AcquireLockAsync(string lockKey, string lockData, DateTimeOffset expiration, CancellationToken cancellationToken)
+        public virtual async Task<bool> AcquireLockAsync(string lockKey, string lockData, int timeoutMilliseconds, CancellationToken cancellationToken)
         {
             try
             {
@@ -166,7 +166,7 @@ namespace ServiceBricks.Cache
                     {
                         CacheKey = lockKey,
                         CacheValue = lockData,
-                        ExpirationDate = expiration
+                        ExpirationDate = DateTimeOffset.UtcNow.AddMilliseconds(timeoutMilliseconds)
                     });
                     if (respCreate.Success)
                         return true;

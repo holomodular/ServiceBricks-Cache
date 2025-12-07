@@ -63,6 +63,9 @@ namespace ServiceBricks.Cache.MongoDb
             services.AddScoped<IApiService<CacheDataDto>, CacheDataApiService>();
             services.AddScoped<ICacheDataApiService, CacheDataApiService>();
 
+            // AI: Add mappings
+            CacheDataMappingProfile.Register(MapperRegistry.Instance);
+
             // AI: Add business rules for the module
             DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
             DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));

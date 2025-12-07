@@ -17,10 +17,6 @@ namespace ServiceBricks.Cache.AzureDataTables
         /// </summary>
         public CacheAzureDataTablesModule()
         {
-            AutomapperAssemblies = new List<Assembly>()
-            {
-                typeof(CacheAzureDataTablesModule).Assembly
-            };
             DependentModules = new List<IModule>()
             {
                 new CacheModule()

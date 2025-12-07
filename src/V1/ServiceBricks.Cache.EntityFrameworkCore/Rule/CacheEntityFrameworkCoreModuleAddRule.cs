@@ -57,6 +57,9 @@ namespace ServiceBricks.Cache.EntityFrameworkCore
             services.AddScoped<IApiService<CacheDataDto>, CacheDataApiService>();
             services.AddScoped<ICacheDataApiService, CacheDataApiService>();
 
+            // AI: Register mappings
+            CacheDataMappingProfile.Register(MapperRegistry.Instance);
+
             // AI: Register business rules for the module
             DomainCreateUpdateDateRule<CacheData>.Register(BusinessRuleRegistry.Instance);
             DomainDateTimeOffsetRule<CacheData>.Register(BusinessRuleRegistry.Instance, nameof(CacheData.ExpirationDate));

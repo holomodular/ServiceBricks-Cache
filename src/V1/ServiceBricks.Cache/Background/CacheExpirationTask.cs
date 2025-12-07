@@ -64,6 +64,10 @@ namespace ServiceBricks.Cache
 
                 foreach (var item in respExpired.Item.List)
                 {
+                    // Cancel if requested
+                    if (cancellationToken.IsCancellationRequested)
+                        return;
+
                     // AI: Delete the expired cache data.
                     await _dataApiService.DeleteAsync(item.StorageKey);
                 }

@@ -1,24 +1,39 @@
-﻿using AutoMapper;
-
-namespace ServiceBricks.Cache.MongoDb
+﻿namespace ServiceBricks.Cache.MongoDb
 {
     /// <summary>
     /// This is an automapper profile for the CacheData domain object.
     /// </summary>
-    public partial class CacheDataMappingProfile : Profile
+    public partial class CacheDataMappingProfile
     {
         /// <summary>
-        /// Constructor.
+        /// Register the mapping
         /// </summary>
-        public CacheDataMappingProfile()
+        public static void Register(IMapperRegistry registry)
         {
-            // AI: Map the CacheDataDto to the CacheData
-            CreateMap<CacheDataDto, CacheData>()
-                .ForMember(x => x.CreateDate, y => y.Ignore())
-                .ForMember(x => x.CacheKey, y => y.MapFrom(z => string.IsNullOrEmpty(z.CacheKey) ? z.StorageKey : z.CacheKey));
+            registry.Register<CacheData, CacheDataDto>(
+                (s, d) =>
+                {
+                    d.CacheKey = s.CacheKey;
+                    d.CacheValue = s.CacheValue;
+                    d.CreateDate = s.CreateDate;
+                    d.ExpirationDate = s.ExpirationDate;
+                    d.StorageKey = s.CacheKey;
+                    d.UpdateDate = s.UpdateDate;
+                });
 
-            CreateMap<CacheData, CacheDataDto>()
-                .ForMember(x => x.StorageKey, y => y.MapFrom(z => z.CacheKey));
+            registry.Register<CacheDataDto, CacheData>(
+                (s, d) =>
+                {
+                    if (string.IsNullOrEmpty(s.CacheKey))
+                        d.CacheKey = s.StorageKey;
+                    else
+                        d.CacheKey = s.CacheKey;
+
+                    d.CacheValue = s.CacheValue;
+                    //d.CreateDate ignored
+                    d.ExpirationDate = s.ExpirationDate;
+                    d.UpdateDate = s.UpdateDate;
+                });
         }
     }
 }

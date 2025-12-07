@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ServiceBricks.Cache
 {
@@ -54,13 +55,19 @@ namespace ServiceBricks.Cache
             var config = e.Configuration;
 
             // AI: Add hosted services for the module
-            services.AddHostedService<CacheExpirationTimer>();
 
             // AI: Add workers for tasks in the module
             services.AddScoped<CacheExpirationTask.Worker>();
 
             // AI: Configure all options for the module
+            services.Configure<ExpirationOptions>(config.GetSection(CacheConstants.APPSETTING_EXPIRATION_OPTIONS));
             services.Configure<SemaphoreOptions>(config.GetSection(CacheConstants.APPSETTING_SEMAPHORE_OPTIONS));
+
+            // AI: Add expiration timer if enabled
+            if (config.GetSection(CacheConstants.APPSETTING_EXPIRATION_OPTIONS).GetValue<bool>(nameof(ExpirationOptions.TimerEnabled)))
+            {
+                services.AddHostedService<CacheExpirationTimer>();
+            }
 
             // AI: Add API Controllers for each DTO in the module
             services.AddScoped<IApiController<CacheDataDto>, CacheDataApiController>();

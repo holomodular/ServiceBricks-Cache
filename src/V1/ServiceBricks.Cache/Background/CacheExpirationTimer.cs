@@ -9,7 +9,7 @@ namespace ServiceBricks.Cache
     /// </summary>
     public partial class CacheExpirationTimer : TaskTimerHostedService<CacheExpirationTask.Detail, CacheExpirationTask.Worker>
     {
-        private SemaphoreOptions _semaphoreOptions;
+        private ExpirationOptions _expirationOptions;
 
         /// <summary>
         /// Constructor.
@@ -19,11 +19,11 @@ namespace ServiceBricks.Cache
         public CacheExpirationTimer(
             IServiceProvider serviceProvider,
             ILoggerFactory logger,
-            IOptions<SemaphoreOptions> options) : base(serviceProvider, logger)
+            IOptions<ExpirationOptions> options) : base(serviceProvider, logger)
         {
-            _semaphoreOptions = options.Value;
-            TimerTickInterval = TimeSpan.FromMilliseconds(_semaphoreOptions.ExpirationTimerIntervalMilliseconds);
-            TimerDueTime = TimeSpan.FromMilliseconds(_semaphoreOptions.ExpirationTimerDueMilliseconds);
+            _expirationOptions = options.Value;
+            TimerTickInterval = TimeSpan.FromMilliseconds(_expirationOptions.TimerIntervalMilliseconds);
+            TimerDueTime = TimeSpan.FromMilliseconds(_expirationOptions.TimerDueMilliseconds);
         }
 
         /// <summary>

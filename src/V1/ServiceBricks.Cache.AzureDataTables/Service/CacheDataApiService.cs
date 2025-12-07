@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace ServiceBricks.Cache.AzureDataTables
+﻿namespace ServiceBricks.Cache.AzureDataTables
 {
     /// <summary>
     /// This is a REST API service for the CacheData domain object.

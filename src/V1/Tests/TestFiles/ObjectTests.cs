@@ -100,7 +100,7 @@ namespace ServiceBricks.Xunit
             var loggerFactory = SystemManager.ServiceProvider.GetRequiredService<ILoggerFactory>();
             var taskQueue = SystemManager.ServiceProvider.GetRequiredService<ITaskQueue>();
             var apiservice = SystemManager.ServiceProvider.GetRequiredService<ICacheDataApiService>();
-            var semaphoreOptions = new OptionsWrapper<SemaphoreOptions>(new SemaphoreOptions());
+            var semaphoreOptions = new OptionsWrapper<ExpirationOptions>(new ExpirationOptions());
 
             var timer = new CacheExpirationTimer(
                 SystemManager.ServiceProvider,
@@ -181,12 +181,10 @@ namespace ServiceBricks.Xunit
         {
             CacheModule module = new CacheModule();
             var dep = module.DependentModules;
-            var au = module.AutomapperAssemblies;
             var vi = module.ViewAssemblies;
 
             CacheEntityFrameworkCoreModule emod = new CacheEntityFrameworkCoreModule();
             var edep = emod.DependentModules;
-            var eau = emod.AutomapperAssemblies;
             var evi = emod.ViewAssemblies;
 
             return Task.CompletedTask;

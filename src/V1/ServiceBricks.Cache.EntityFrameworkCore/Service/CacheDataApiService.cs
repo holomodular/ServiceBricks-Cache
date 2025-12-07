@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace ServiceBricks.Cache.EntityFrameworkCore
+﻿namespace ServiceBricks.Cache.EntityFrameworkCore
 {
     /// <summary>
     /// This is a REST API service for the CacheData domain object.

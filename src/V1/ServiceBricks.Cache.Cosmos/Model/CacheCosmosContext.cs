@@ -36,10 +36,6 @@ namespace ServiceBricks.Cache.Cosmos
             // AI: Create the model for each table
             builder.Entity<CacheData>().HasKey(key => key.CacheKey);
             builder.Entity<CacheData>().ToContainer(CacheCosmosConstants.GetContainerName(nameof(CacheData)));
-#if NET9_0
-#else
-            builder.Entity<CacheData>().HasPartitionKey(key => key.CacheKey);
-#endif
         }
 
         /// <summary>
@@ -48,7 +44,7 @@ namespace ServiceBricks.Cache.Cosmos
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-#if NET9_0
+#if NET8_0_OR_GREATER
             optionsBuilder.ConfigureWarnings(w => w.Ignore(CosmosEventId.SyncNotSupported));
 #endif
 

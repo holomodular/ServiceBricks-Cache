@@ -14,10 +14,6 @@ namespace ServiceBricks.Cache.MongoDb
         /// </summary>
         public CacheMongoDbModule()
         {
-            AutomapperAssemblies = new List<Assembly>()
-            {
-                typeof(CacheMongoDbModule).Assembly
-            };
             DependentModules = new List<IModule>()
             {
                 new CacheModule()
