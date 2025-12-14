@@ -27,24 +27,21 @@ namespace ServiceBricks.Cache.AzureDataTables
             registry.Register<CacheDataDto, CacheData>(
                 (s, d) =>
                 {
-                    if (string.IsNullOrEmpty(s.CacheKey))
+                    d.CacheKey = s.CacheKey;                                        
+                    d.CacheValue = s.CacheValue;
+                    //d.CreateDate ignored
+                    //d.ETag ignored
+                    d.ExpirationDate = s.ExpirationDate;                    
+                    //d.Timestamp ignored
+                    d.UpdateDate = s.UpdateDate;
+                    if (!string.IsNullOrEmpty(s.StorageKey))
                     {
                         d.CacheKey = s.StorageKey;
                         d.PartitionKey = s.StorageKey;
                     }
-                    else
-                    {
-                        d.CacheKey = s.CacheKey;
-                        d.PartitionKey = s.CacheKey;
-                    }
-                    d.CacheValue = s.CacheValue;
-                    //d.CreateDate ignored
-                    //d.ETag ignored
-                    d.ExpirationDate = s.ExpirationDate;
+                    else                        
+                        d.PartitionKey = s.CacheKey;                    
 
-                    d.RowKey = string.Empty;
-                    //d.Timestamp ignored
-                    d.UpdateDate = s.UpdateDate;
                 });
         }
     }

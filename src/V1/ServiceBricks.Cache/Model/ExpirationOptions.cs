@@ -15,12 +15,12 @@
         public virtual bool TimerEnabled { get; set; }
 
         /// <summary>
-        /// The expiration timer interval.
+        /// The timer interval.
         /// </summary>
         public virtual int TimerIntervalMilliseconds { get; set; }
 
         /// <summary>
-        /// The expiration due time (1st run).
+        /// The timer due time (1st run).
         /// </summary>
         public virtual int TimerDueMilliseconds { get; set; }
     }

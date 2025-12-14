@@ -5,10 +5,6 @@
     /// </summary>
     public static partial class CacheConstants
     {
-        /// <summary>
-        /// Application settings keys for client API configuration.
-        /// </summary>
-        public const string APPSETTING_CLIENT_APICONFIG = @"ServiceBricks:Cache:Client:Api";
 
         /// <summary>
         /// Application settings keys for expiration options.

@@ -25,8 +25,5 @@
     <ProjectReference Include="..\..\ServiceBricks.Cache.Sqlite\ServiceBricks.Cache.Sqlite.csproj" />
     <ProjectReference Include="..\..\ServiceBricks.Cache.SqlServer\ServiceBricks.Cache.SqlServer.csproj" />
   </ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="9.0.11" />
-	</ItemGroup>
 
 </Project>

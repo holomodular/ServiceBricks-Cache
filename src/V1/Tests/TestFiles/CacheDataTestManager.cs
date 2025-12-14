@@ -44,7 +44,7 @@ namespace ServiceBricks.Xunit
                     utcTicks = ((long)(utcTicks / 10)) * 10;
                     Assert.True(serviceDto.ExpirationDate.Value.UtcTicks >= utcTicks);
                 }
-                else if (method == HttpMethod.Put)
+                else if (method == HttpMethod.Put || method == HttpMethod.Patch)
                 {
                     // Postgres special handling
                     long utcTicks = clientDto.ExpirationDate.Value.UtcTicks;
@@ -65,7 +65,7 @@ namespace ServiceBricks.Xunit
             Assert.True(serviceDto.CacheValue == clientDto.CacheValue);
 
             //UpdateDateRule
-            if (method == HttpMethod.Post || method == HttpMethod.Put)
+            if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
                 Assert.True(serviceDto.UpdateDate > clientDto.UpdateDate); //Rule
             else
             {
@@ -114,18 +114,36 @@ namespace ServiceBricks.Xunit
 
         public override IApiClient<CacheDataDto> GetClient(IServiceProvider serviceProvider)
         {
+            var appconfig = serviceProvider.GetRequiredService<IConfiguration>();
+            var config = new ConfigurationBuilder()
+                .AddConfiguration(appconfig)
+                .AddInMemoryCollection(new Dictionary<string, string?>
+                {
+                    { ServiceBricksConstants.APPSETTING_CLIENT_APIOPTIONS + ":ReturnResponseObject", "false" },
+                })
+                .Build();
+
             return new CacheDataApiClient(
                 serviceProvider.GetRequiredService<ILoggerFactory>(),
                 serviceProvider.GetRequiredService<IHttpClientFactory>(),
-                serviceProvider.GetRequiredService<IConfiguration>());
+                config);
         }
 
         public override IApiClient<CacheDataDto> GetClientReturnResponse(IServiceProvider serviceProvider)
         {
+            var appconfig = serviceProvider.GetRequiredService<IConfiguration>();
+            var config = new ConfigurationBuilder()
+                .AddConfiguration(appconfig)
+                .AddInMemoryCollection(new Dictionary<string, string?>
+                {
+                    { ServiceBricksConstants.APPSETTING_CLIENT_APIOPTIONS + ":ReturnResponseObject", "true" },
+                })
+                .Build();
+
             return new CacheDataApiClient(
                 serviceProvider.GetRequiredService<ILoggerFactory>(),
                 serviceProvider.GetRequiredService<IHttpClientFactory>(),
-                serviceProvider.GetRequiredService<IConfiguration>());
+                config);
         }
 
         public override IApiService<CacheDataDto> GetService(IServiceProvider serviceProvider)
@@ -154,7 +172,7 @@ namespace ServiceBricks.Xunit
             Assert.True(serviceDto.CacheValue == clientDto.CacheValue);
 
             //UpdateDateRule
-            if (method == HttpMethod.Post || method == HttpMethod.Put)
+            if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
                 Assert.True(serviceDto.UpdateDate > clientDto.UpdateDate); //Rule
             else
                 Assert.True(serviceDto.UpdateDate == clientDto.UpdateDate);

@@ -18,7 +18,7 @@ namespace ServiceBricks.Cache
             ILoggerFactory loggerFactory,
             IHttpClientFactory httpClientFactory,
             IConfiguration configuration)
-            : base(loggerFactory, httpClientFactory, configuration.GetApiConfig(CacheConstants.APPSETTING_CLIENT_APICONFIG))
+            : base(loggerFactory, httpClientFactory, configuration.GetApiConfig(CacheModelConstants.APPSETTING_CLIENT_APICONFIG))
         {
             ApiResource = @"Cache/CacheData";
         }

@@ -22,7 +22,7 @@
   </ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="10.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="10.0.1" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
 		<PackageReference Include="xunit" Version="2.9.3" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
@@ -40,7 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ServiceBricks.Cache.XunitNet9\ServiceBricks.Cache.XunitNet9.csproj" />
+	  <ProjectReference Include="..\ServiceBricks.Cache.XunitNet10\ServiceBricks.Cache.XunitNet10.csproj" />
 		<ProjectReference Include="..\..\ServiceBricks.Cache.Sqlite\ServiceBricks.Cache.Sqlite.csproj" />
 	</ItemGroup>
 

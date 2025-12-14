@@ -26,15 +26,13 @@ namespace ServiceBricks.Cache.EntityFrameworkCore
             registry.Register<CacheDataDto, CacheData>(
                 (s, d) =>
                 {
-                    if (string.IsNullOrEmpty(s.CacheKey))
-                        d.CacheKey = s.StorageKey;
-                    else
-                        d.CacheKey = s.CacheKey;
-
+                    d.CacheKey = s.CacheKey;
                     d.CacheValue = s.CacheValue;
                     //d.CreateDate ignored
                     d.ExpirationDate = s.ExpirationDate;
                     d.UpdateDate = s.UpdateDate;
+                    if (!string.IsNullOrEmpty(s.StorageKey))
+                        d.CacheKey = s.StorageKey;
                 });
         }
     }

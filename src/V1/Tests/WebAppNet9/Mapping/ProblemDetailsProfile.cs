@@ -14,7 +14,7 @@ namespace WebApp
             registry.Register<Exception, ProblemDetails>(
                 (s, d) =>
                 {
-                    d.Detail = JsonSerializer.Instance.SerializeObject(s);
+                    d.Detail = s.StackTrace;
                     d.Status = (int)HttpStatusCode.InternalServerError;
                     d.Type = s.GetType().FullName;
                     d.Title = s.Message;
