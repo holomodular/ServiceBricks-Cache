@@ -25,35 +25,5 @@ namespace ServiceBricks.Cache
 
             return services;
         }
-
-        /// <summary>
-        /// Add the ServiceBricks Cache client to the service collection.
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddServiceBricksCacheClient(this IServiceCollection services, IConfiguration configuration)
-        {
-            // AI: Add clients for the module for each DTO
-            services.AddScoped<IApiClient<CacheDataDto>, CacheDataApiClient>();
-            services.AddScoped<ICacheDataApiClient, CacheDataApiClient>();
-
-            return services;
-        }
-
-        /// <summary>
-        /// Add the ServiceBricks Cache client to the service collection for the API Service references
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddServiceBricksCacheClientForService(this IServiceCollection services, IConfiguration configuration)
-        {
-            // AI: Add clients for the API Services
-            services.AddScoped<IApiService<CacheDataDto>, CacheDataApiClient>();
-            services.AddScoped<ICacheDataApiService, CacheDataApiClient>();
-
-            return services;
-        }
     }
 }

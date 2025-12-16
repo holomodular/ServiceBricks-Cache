@@ -11,9 +11,5 @@
         /// </summary>
         public const string APPSETTING_EXPIRATION_OPTIONS = "ServiceBricks:Cache:Expiration";
 
-        /// <summary>
-        /// Application settings keys for semaphore options.
-        /// </summary>
-        public const string APPSETTING_SEMAPHORE_OPTIONS = "ServiceBricks:Cache:Semaphore";
     }
 }

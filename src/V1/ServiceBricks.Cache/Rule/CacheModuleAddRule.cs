@@ -61,7 +61,7 @@ namespace ServiceBricks.Cache
 
             // AI: Configure all options for the module
             services.Configure<ExpirationOptions>(config.GetSection(CacheConstants.APPSETTING_EXPIRATION_OPTIONS));
-            services.Configure<SemaphoreOptions>(config.GetSection(CacheConstants.APPSETTING_SEMAPHORE_OPTIONS));
+            services.Configure<SemaphoreOptions>(config.GetSection(CacheModelConstants.APPSETTING_SEMAPHORE_OPTIONS));
 
             // AI: Add expiration timer if enabled
             if (config.GetSection(CacheConstants.APPSETTING_EXPIRATION_OPTIONS).GetValue<bool>(nameof(ExpirationOptions.TimerEnabled)))

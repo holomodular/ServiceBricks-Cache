@@ -1,3 +1,7 @@
+# 1.4.0-d
+- Move semaphore, process and work services to Model package
+- Verified all tests run successfully for all providers and versions
+
 # 1.4.0-c
 - Create new ServiceBricks.Cache.Model package and include DTOs, clients and contracts
 

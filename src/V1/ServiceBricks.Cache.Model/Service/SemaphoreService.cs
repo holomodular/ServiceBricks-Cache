@@ -248,7 +248,7 @@ namespace ServiceBricks.Cache
         /// </summary>
         /// <param name="dataTransferObject"></param>
         /// <returns></returns>
-        protected virtual string GetLockKey(IDataTransferObject dataTransferObject)
+        public virtual string GetLockKey(IDataTransferObject dataTransferObject)
         {
             if (dataTransferObject == null)
                 return null;
