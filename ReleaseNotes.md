@@ -1,3 +1,7 @@
+# 1.4.0-e
+- Minor fixes
+- New test home page
+
 # 1.4.0-d
 - Move semaphore, process and work services to Model package
 - Verified all tests run successfully for all providers and versions
