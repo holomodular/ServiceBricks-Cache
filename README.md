@@ -1,4 +1,4 @@
-![ServiceBricks Logo](https://github.com/holomodular/ServiceBricks/blob/main/Logo.png)  
+![ServiceBricks Logo](https://raw.githubusercontent.com/holomodular/ServiceBricks/main/Logo.png)   
 
 [![NuGet version](https://badge.fury.io/nu/ServiceBricks.Cache.Microservice.svg)](https://badge.fury.io/nu/ServiceBricks.Cache.Microservice)
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/holomodular-support/a4914be5332dc8c9536889edf1f00ace/raw/servicebrickscache-codecoverage.json)
@@ -8,10 +8,11 @@
 
 ## Overview
 
-This repository contains a cache microservice built using the ServiceBricks foundation.
-The cache microservice exposes a key/value pair object that can be used for simple data storage.
-It also provides a background task for an expiration process to delete cache items once their expiration date occurs.
-There are additional classes added for using this microservice as a semaphore, exposing a locking mechanism that can be used by multiple servers when needing to access a shared resource.
+This repository contains the cache microservice built using the ServiceBricks foundation.
+The cache microservice exposes a key/value pair object that can be used for simple data storage. 
+It includes a semaphore, exposing a locking mechanism that can be used by multiple servers when needing to access a shared resource.
+A background expiration task can be enabled, with an initial delay and interval, to delete expired cache items once their expiration date occurs.
+The expiration process duals as an orphaned lock cleanup, should a lock not be released within the timeout period.
 
 ## Data Transfer Objects
 
@@ -36,13 +37,12 @@ Key and Value pair storage object along with an expiration date to denote when i
 ## Background Tasks and Timers
 
 ### CacheExpirationTimer class
-This background timer runs by default every 2500 milliseconds, with an initial delay of 1 second. It executes the CacheExpirationTask.
-The interval can be changed with the SemaphoreOptions, along with other options used for locking shared resources.
+This background timer can be enabled, with an initial delay and interval, to execute the CacheExpirationTask.
 
 [View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Background/CacheExpirationTimer.cs)
 
 ### CacheExpirationTask class
-This background task queries for all CacheData records with an expiration date is less than now, then deletes those records.
+This background task queries for all CacheData records with an expiration date is less than the current date/time, then deletes expired records.
 
 [View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Background/CacheExpirationTask.cs)
 
@@ -58,7 +58,7 @@ None
 ## Additional Services
 
 ### SemaphoreService
-This provides a locking mechanism for shared resources in the infrastructure. Using the CacheData object, multiple concurrent services try creating the same key/record in the backing storage, the one that wins pulls records, then releases/deletes the record. Processes will delay and retry creating the lock until it obtains it or times out. See the SemaphoreOptions for the full list of values used.
+This provides a locking mechanism for shared resources in the infrastructure. Using the CacheData object, multiple concurrent services try creating the same key/record in the backing storage, the one that wins pulls records, then releases/deletes the lock. Processes will delay and retry creating the lock until it obtains it or times out. See the SemaphoreOptions for the full list of values used.
 
 [View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SemaphoreService.cs)
 
@@ -82,15 +82,19 @@ This abstract class provides a way to lock the underlying data store and use it 
 ```csharp
 {
     "ServiceBricks":{
-	"Cache":{
-	    "Semaphore":{
-		"DelayMilliseconds": 300,
-		"CancellationMilliseconds": 10000,
-		"OrphanExpirationMilliseconds": 5000,
-		"ExpirationTimerIntervalMilliseconds": 2500
-	    }
-	}
+	  "Cache":{
+	   "Expiration": {
+		  "TimerEnabled": false,
+		  "TimerIntervalMilliseconds": 7000,
+		  "TimerDueMilliseconds": 1000
+	   },
+	   "Semaphore": {
+		  "DelayMilliseconds": 3000,
+		  "CancellationMilliseconds": 20000,
+		  "OrphanTimeoutMilliseconds": 10000
+	   }
     }
+  }
 }
 ```
 
