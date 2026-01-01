@@ -60,22 +60,22 @@ None
 ### SemaphoreService
 This provides a locking mechanism for shared resources in the infrastructure. Using the CacheData object, multiple concurrent services try creating the same key/record in the backing storage, the one that wins pulls records, then releases/deletes the lock. Processes will delay and retry creating the lock until it obtains it or times out. See the SemaphoreOptions for the full list of values used.
 
-[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SemaphoreService.cs)
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache.Model/Service/SemaphoreService.cs)
 
 ### SingleServerProcessService
 This interface stores a key in cache used for syncing across load-balanced applications so that only one server would process records at a time (see SingleWorkService). It provides a heartbeat, so that other instances will pickup and start processing, should the main running server be shut down.
 
-[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SingleServerProcessService.cs)
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache.Model/Service/SingleServerProcessService.cs)
 
 ### SingleWorkService class
 This abstract class implements the WorkService and the ISingleServerProcessService to provide a single ordered work queue across multi-application instances.
 
-[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/SingleWorkService.cs)
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache.Model/Service/SingleWorkService.cs)
 
 ### LockedWorkService class
 This abstract class provides a way to lock the underlying data store and use it as a queue, so that multiple, simultaneous running workers do not return the same records. While the APIConcurrrency rule provides some protection, this class will provide the full solution.
 
-[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache/Service/LockedWorkService.cs)
+[View Source](https://github.com/holomodular/ServiceBricks-Cache/blob/main/src/V1/ServiceBricks.Cache.Model/Service/LockedWorkService.cs)
 
 ## Application Settings
 
